@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trạm Sạc Cảm Xúc 4.0 – Trường THPT Đakrông</title>
+  <style>
+    :root {
+      --primary: #1b6b52;
+      --primary-light: #e6f4ef;
+      --primary-dark: #124c3a;
+      --accent: #e07a5f;
+      --bg: #f6faf8;
+      --card: #ffffff;
+      --text: #1f2d28;
+      --muted: #5a6d66;
+      --border: #dce8e3;
+      --radius: 16px;
+      --shadow: 0 6px 20px rgba(27, 107, 82, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 40px;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* Hero Banner */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, #2a8c6c 100%);
+      color: #ffffff;
+      border-radius: 22px;
+      padding: 28px 22px;
+      text-align: center;
+      box-shadow: 0 10px 28px rgba(27, 107, 82, 0.22);
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.18);
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-size: 26px;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 15px;
+      opacity: 0.95;
+      margin-bottom: 18px;
+    }
+
+    .trust-box {
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 13.5px;
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      width: 100%;
+      background: #ffffff;
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 16px;
+      text-decoration: none;
+      padding: 14px 20px;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .btn-primary:active {
+      transform: scale(0.98);
+    }
+
+    /* Section & Cards */
+    .section-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin: 24px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .card p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .btn-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    @media (max-width: 480px) {
+      .btn-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      text-align: center;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-green {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-soft {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+
+    .btn-warm {
+      background: #fff1ec;
+      color: #b84a2d;
+      border: 1px solid #f7d5ca;
+    }
+
+    .btn-emergency {
+      background: #d93829;
+      color: #ffffff;
+      width: 100%;
+      font-size: 15px;
+      padding: 14px;
+    }
+
+    /* Breathing 4-7-8 Widget */
+    .breath-widget {
+      text-align: center;
+      background: linear-gradient(180deg, #eef8f4 0%, #ffffff 100%);
+    }
+
+    .breath-circle-wrap {
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 10px 0 14px;
+    }
+
+    .breath-circle {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #38a883 0%, var(--primary) 100%);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      box-shadow: 0 0 0 10px rgba(27, 107, 82, 0.12);
+      transition: transform 4s ease-in-out;
+    }
+
+    .breath-circle.inhale {
+      transform: scale(1.42);
+      transition: transform 4s ease-out;
+    }
+
+    .breath-circle.hold {
+      transform: scale(1.42);
+      transition: none;
+    }
+
+    .breath-circle.exhale {
+      transform: scale(0.95);
+      transition: transform 8s ease-in-out;
+    }
+
+    .breath-phase {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .breath-count {
+      font-size: 22px;
+      line-height: 1.1;
+    }
+
+    /* Podcast List */
+    .podcast-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px;
+      background: var(--bg);
+      border-radius: 12px;
+      margin-bottom: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .podcast-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .podcast-info strong {
+      display: block;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .podcast-info span {
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    .btn-mini {
+      padding: 8px 12px;
+      font-size: 13px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+
+    /* Accordion Cẩm nang */
+    details {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    summary {
+      padding: 14px 16px;
+      font-weight: 600;
+      font-size: 14.5px;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--primary-dark);
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: "+";
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    details[open] summary::after {
+      content: "−";
+    }
+
+    .details-body {
+      padding: 0 16px 14px;
+      font-size: 14px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+    }
+
+    .details-body ul {
+      padding-left: 18px;
+      margin-top: 6px;
+    }
+
+    .details-body li {
+      margin-bottom: 5px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: #1f2d28;
+      color: #ffffff;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 13.5px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 999;
+      max-width: 90%;
+      text-align: center;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- 1. MẶT TIỀN (HERO) -->
+    <header class="hero">
+      <div class="badge">TRƯỜNG THPT ĐAKRÔNG • TỔ TƯ VẤN HỌC ĐƯỜNG</div>
+      <h1>🔋 Trạm Sạc Cảm Xúc 4.0</h1>
+      <p>Không gian an toàn để bạn dừng lại, hít thở, lắng nghe chính mình và tìm người đồng hành.</p>
+      <div class="trust-box">
+        🔒 <strong>Cam kết:</strong> Ở đây không có sự phán xét. Mọi chia sẻ của bạn đều được <strong>bảo mật tuyệt đối</strong>.
+      </div>
+      <a href="#" class="btn-primary" data-link="khaoSat">
+        ✨ Kiểm tra "Pin Cảm Xúc" đầu năm (2 phút)
+      </a>
+    </header>
+
+    <!-- 2. HÒM THƯ ẨN DANH & KẾT NỐI 1-1 -->
+    <div class="section-title">💌 Trút bầu tâm sự & Đặt lịch hẹn</div>
+    <div class="card">
+      <h3>Bạn đang có chuyện khó nói?</h3>
+      <p>Không cần ghi tên thật. Hãy để lại vài dòng hoặc nhắn tin riêng cho Cô khi bạn thấy mệt mỏi, áp lực bài vở, chuyện gia đình hay bạn bè.</p>
+      <div class="btn-grid">
+        <a href="#" class="btn btn-green" data-link="homThuAnDanh">📮 Gửi thư ẩn danh</a>
+        <a href="#" class="btn btn-soft" data-link="nhanTinRieng">💬 Nhắn tin riêng (Zalo/FB)</a>
+      </div>
+      <div style="margin-top: 10px;">
+        <a href="#" class="btn btn-warm" style="width: 100%;" data-link="datLich11">
+          📅 Đặt lịch gặp trực tiếp 1-1 tại Phòng Tư vấn
+        </a>
+      </div>
+    </div>
+
+    <!-- 3. GÓC CHỮA LÀNH: THỞ 4-7-8 & PHÁT THANH CHẠM -->
+    <div class="section-title">🌿 Góc Chữa lành & Phát thanh "Chạm"</div>
+
+    <!-- Vòng tròn thở 4-7-8 chạy trực tiếp -->
+    <div class="card breath-widget">
+      <h3>Hạ nhiệt lo âu trong 1 phút (Kỹ thuật thở 4-7-8)</h3>
+      <p>Khi tim đập nhanh trước giờ thi hoặc đang rất giận, hãy bấm Bắt đầu và hít thở theo vòng tròn này.</p>
+      <div class="breath-circle-wrap">
+        <div class="breath-circle" id="breathCircle">
+          <span class="breath-phase" id="breathPhase">Sẵn sàng</span>
+          <span class="breath-count" id="breathCount">4-7-8</span>
+        </div>
+      </div>
+      <button class="btn btn-green" id="breathBtn" style="margin: 0 auto; min-width: 180px;">
+        ▶ Bắt đầu hít thở
+      </button>
+    </div>
+
+    <!-- Kênh Phát thanh học đường "Chạm" -->
+    <div class="card">
+      <h3>🎙️ Kênh Phát thanh học đường "Chạm"</h3>
+      <p>Nghe lại các số phát thanh giờ ra chơi và chuỗi Podcast chăm sóc tâm hồn bất cứ lúc nào.</p>
+      <div class="podcast-item">
+        <div class="podcast-info">
+          <strong>Số 01: Chào Trạm Sạc – Cách giữ bình tĩnh trước mùa thi</strong>
+          <span>Thời lượng: ~8 phút • Phát sóng giờ ra chơi</span>
+        </div>
+        <a href="#" class="btn btn-soft btn-mini" data-link="podcast1">🎧 Nghe</a>
+      </div>
+      <div class="podcast-item">
+        <div class="podcast-info">
+          <strong>Số 02: Khi áp lực điểm số và kỳ vọng đè nặng</strong>
+          <span>Thời lượng: ~8 phút • Chuyên mục đồng hành</span>
+        </div>
+        <a href="#" class="btn btn-soft btn-mini" data-link="podcast2">🎧 Nghe</a>
+      </div>
+    </div>
+
+    <!-- Cẩm nang tâm lý bỏ túi -->
+    <div class="section-title">📖 Cẩm nang tâm lý số bỏ túi</div>
+    <details>
+      <summary>1. Quy tắc 5N khi nóng giận hoặc mâu thuẫn</summary>
+      <div class="details-body">
+        Trước khi buông lời làm tổn thương bạn bè hay người thân, hãy đi qua 5 nhịp:
+        <ul>
+          <li><strong>Ngưng:</strong> Dừng lại 5 giây, không phản ứng ngay.</li>
+          <li><strong>Nghe:</strong> Lắng nghe nhịp thở của mình và lời người đối diện.</li>
+          <li><strong>Ngẫm:</strong> Tự hỏi điều gì thực sự làm mình khó chịu?</li>
+          <li><strong>Nghĩ:</strong> Nếu nói ra câu này, chuyện sẽ tốt lên hay tệ đi?</li>
+          <li><strong>Nói:</strong> Nói bằng sự bình tĩnh, rõ ràng và tôn trọng.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>2. Chiến thuật "Đối tác" khi nói chuyện với bố mẹ</summary>
+      <div class="details-body">
+        Thay vì đối đầu hay im lặng thu mình, hãy thử nói với bố mẹ theo cấu trúc 3 bước:
+        <ul>
+          <li><strong>Bước 1 (Ghi nhận):</strong> "Con biết bố mẹ lo cho tương lai của con..."</li>
+          <li><strong>Bước 2 (Chia sẻ cảm xúc):</strong> "Nhưng dạo này con đang thấy khá áp lực về..."</li>
+          <li><strong>Bước 3 (Đề xuất):</strong> "Con muốn cùng bố mẹ bàn cách để con học/chọn nghề tốt hơn."</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>3. Mẹo ngủ ngon & bớt lệ thuộc điện thoại ban đêm</summary>
+      <div class="details-body">
+        <ul>
+          <li>Đặt điện thoại cách giường ít nhất 1 sải tay trước khi ngủ 30 phút.</li>
+          <li>Bật chế độ "Không làm phiền" sau 22h30 để não bộ được nghỉ ngơi thật sự.</li>
+          <li>Nếu khó ngủ, hãy mở vòng tròn thở 4-7-8 ở trên và làm 4 chu kỳ liên tiếp.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 4. GÓC KHÁM PHÁ & CHƠI MÀ HỌC -->
+    <div class="section-title">🧭 Khám phá bản thân & Chơi mà học</div>
+    <div class="card">
+      <h3>Hiểu mình – Chọn nghề & Ranh giới an toàn</h3>
+      <p>Làm bài trắc nghiệm khoa học để biết điểm mạnh của mình và tham gia mini-game rèn kỹ năng ứng xử.</p>
+      <div class="btn-grid">
+        <a href="#" class="btn btn-soft" data-link="testHuongNghiep">🎯 Trắc nghiệm RIASEC / Đa trí tuệ</a>
+        <a href="#" class="btn btn-soft" data-link="gameKyNang">🎮 Game Ranh giới an toàn</a>
+      </div>
+    </div>
+
+    <!-- 5. PHÁP LUẬT & HỖ TRỢ KHẨN CẤP -->
+    <div class="section-title">🛡️ Pháp luật học đường & Hỗ trợ khẩn cấp</div>
+    <div class="card">
+      <h3>Bạn không bao giờ phải đi một mình</h3>
+      <p>Tra cứu quyền, nghĩa vụ của học sinh hoặc gọi ngay đường dây nóng khi bạn hoặc bạn bè gặp nguy hiểm, bị bắt nạt, xâm hại.</p>
+      <div style="margin-bottom: 10px;">
+        <a href="#" class="btn btn-soft" style="width: 100%;" data-link="phapLuat">
+          ⚖️ Tìm hiểu Quyền & Nghĩa vụ học sinh
+        </a>
+      </div>
+      <a href="tel:111" class="btn btn-emergency">
+        📞 Gọi Tổng đài Quốc gia Bảo vệ Trẻ em: 111 (Miễn phí 24/7)
+      </a>
+    </div>
+
+    <footer>
+      <strong>Tổ Tư vấn học đường & Công tác xã hội – Trường THPT Đakrông</strong><br />
+      Phòng Tư vấn học đường • Mọi thông tin của học sinh được bảo mật theo quy định.
+    </footer>
+  </div>
+
+  <!-- Thông báo nhỏ khi link chưa cập nhật -->
+  <div class="toast" id="toast">Nội dung đang được Tổ Tư vấn cập nhật, bạn quay lại sau nhé! 🌿</div>
+
+  <script>
+    // =========================================================================
+    // KHU VỰC CÀI ĐẶT ĐƯỜNG DẪN (CÔ CHỈ CẦN DÁN LINK VÀO GIỮA DẤU NGOẶC KÉP)
+    // =========================================================================
+    const LINKS = {
+      khaoSat: "https://forms.gle/7DVAs7EYxgaxDtsg6",           // Dán link Google Form Khảo sát Pin cảm xúc đầu năm
+      homThuAnDanh: "https://forms.gle/pbCDZtn2ydfuYnji9",      // Dán link Google Form Hòm thư ẩn danh
+      nhanTinRieng: "https://m.me/linhvvth",      // Dán link Zalo OA hoặc Messenger (VD: https://m.me/ten_page)
+      datLich11: "https://forms.gle/aU61QCfY6xEYHzwRA",         // Dán link Form đặt lịch gặp 1-1 tại phòng tư vấn
+      podcast1: "#",          // Dán link YouTube / Google Drive file âm thanh "Chạm" số 1
+      podcast2: "#",          // Dán link YouTube / Google Drive file âm thanh "Chạm" số 2
+      testHuongNghiep: "#",   // Dán link bài test RIASEC / Đa trí tuệ
+      gameKyNang: "#",        // Dán link trò chơi Genially / Quizizz
+      phapLuat: "#"           // Dán link tài liệu PDF / trang quyền và nghĩa vụ học sinh
+    };
+
+    // Tự động gắn link vào các nút bấm
+    const toast = document.getElementById("toast");
+    let toastTimer;
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 2600);
+    }
+
+    document.querySelectorAll("[data-link]").forEach((el) => {
+      const key = el.getAttribute("data-link");
+      const url = LINKS[key];
+      if (url && url !== "#") {
+        el.href = url;
+        el.target = "_blank";
+        el.rel = "noopener noreferrer";
+      } else {
+        el.addEventListener("click", (e) => {
+          e.preventDefault();
+          showToast("Kênh này đang được Tổ Tư vấn cập nhật, bạn quay lại sau chút nhé! 🌿");
+        });
+      }
+    });
+
+    // =========================================================================
+    // TÍNH NĂNG VÒNG TRÒN THỞ 4-7-8
+    // =========================================================================
+    const breathCircle = document.getElementById("breathCircle");
+    const breathPhase = document.getElementById("breathPhase");
+    const breathCount = document.getElementById("breathCount");
+    const breathBtn = document.getElementById("breathBtn");
+
+    let isBreathing = false;
+    let breathInterval = null;
+
+    const steps = [
+      { label: "Hít vào", seconds: 4, cls: "inhale" },
+      { label: "Giữ hơi", seconds: 7, cls: "hold" },
+      { label: "Thở ra", seconds: 8, cls: "exhale" }
+    ];
+
+    function runBreathing() {
+      let stepIndex = 0;
+      let secLeft = steps[0].seconds;
+
+      function applyStep() {
+        const s = steps[stepIndex];
+        breathCircle.className = "breath-circle " + s.cls;
+        breathPhase.textContent = s.label;
+        breathCount.textContent = secLeft;
+      }
+
+      applyStep();
+      breathInterval = setInterval(() => {
+        secLeft--;
+        if (secLeft <= 0) {
+          stepIndex = (stepIndex + 1) % steps.length;
+          secLeft = steps[stepIndex].seconds;
+          applyStep();
+        } else {
+          breathCount.textContent = secLeft;
+        }
+      }, 1000);
+    }
+
+    breathBtn.addEventListener("click", () => {
+      if (!isBreathing) {
+        isBreathing = true;
+        breathBtn.textContent = "⏹ Dừng lại";
+        breathBtn.classList.replace("btn-green", "btn-warm");
+        runBreathing();
+      } else {
+        isBreathing = false;
+        clearInterval(breathInterval);
+        breathCircle.className = "breath-circle";
+        breathPhase.textContent = "Sẵn sàng";
+        breathCount.textContent = "4-7-8";
+        breathBtn.textContent = "▶ Bắt đầu hít thở";
+        breathBtn.classList.replace("btn-warm", "btn-green");
+      }
+    });
+  </script>
+</body>
+</html>
