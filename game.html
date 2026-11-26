@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ngã Ba Lựa Chọn: Ranh Giới An Toàn &amp; Kỹ Năng Ứng Xử – THPT Đakrông</title>
+  <style>
+    /* =========================================================================
+       BẢNG MÀU & BIẾN THIẾT KẾ (ĐỒNG BỘ TRẠM SẠC CẢM XÚC 4.0)
+       ========================================================================= */
+    :root {
+      --primary: #1b6b52;
+      --primary-light: #e6f4ef;
+      --primary-dark: #124c3a;
+      --accent: #e07a5f;
+      --accent-soft: #fff1ec;
+      --accent-border: #f7d5ca;
+      --bg: #f6faf8;
+      --card: #ffffff;
+      --text: #1f2d28;
+      --muted: #5a6d66;
+      --border: #dce8e3;
+      --success: #168052;
+      --success-bg: #e7f7ef;
+      --danger: #c83e37;
+      --danger-bg: #fdeeed;
+      --warning-bg: #fffaf0;
+      --warning-border: #f3dfb8;
+      --radius: 18px;
+      --shadow: 0 8px 24px rgba(27, 107, 82, 0.09);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding-bottom: 36px;
+    }
+
+    .app-shell {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 14px 16px 24px;
+    }
+
+    /* =========================================================================
+       THANH ĐIỀU HƯỚNG TRÊN CÙNG (TOP BAR)
+       ========================================================================= */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .back-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--primary-dark);
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 8px 13px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(27, 107, 82, 0.06);
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .back-pill:active {
+      transform: scale(0.97);
+    }
+
+    .sound-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border: 1px solid #c9e6db;
+      padding: 8px 13px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .sound-btn:active {
+      transform: scale(0.96);
+    }
+
+    .sound-btn.muted {
+      background: #f0f3f2;
+      color: var(--muted);
+      border-color: var(--border);
+    }
+
+    /* =========================================================================
+       QUẢN LÝ MÀN HÌNH & HIỆU ỨNG CHUYỂN CẢNH
+       ========================================================================= */
+    .screen {
+      display: none;
+      animation: fadeUp 0.32s ease;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================================================================
+       THẺ NỘI DUNG & NÚT BẤM CHUNG
+       ========================================================================= */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      margin-bottom: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 14px;
+      border: none;
+      font-family: inherit;
+      font-size: 15.5px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, #268265 100%);
+      color: #ffffff;
+      box-shadow: 0 6px 18px rgba(27, 107, 82, 0.25);
+    }
+
+    .btn-warm {
+      background: var(--accent-soft);
+      color: #b84a2d;
+      border: 1px solid var(--accent-border);
+    }
+
+    .btn-soft {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border: 1px solid #cce6dc;
+    }
+
+    /* =========================================================================
+       MÀN HÌNH 1: BẮT ĐẦU (INTRO)
+       ========================================================================= */
+    .intro-hero {
+      background: linear-gradient(135deg, var(--primary) 0%, #2a8c6c 100%);
+      color: #ffffff;
+      border-radius: 22px;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: 0 12px 28px rgba(27, 107, 82, 0.22);
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro-hero::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      top: -60px;
+      right: -50px;
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.18);
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      margin-bottom: 12px;
+    }
+
+    .hero-icon {
+      font-size: 46px;
+      line-height: 1;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .intro-hero h1 {
+      font-size: 24px;
+      line-height: 1.28;
+      margin-bottom: 10px;
+      font-weight: 800;
+    }
+
+    .intro-hero p {
+      font-size: 14.5px;
+      opacity: 0.95;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .topic-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 14px 0 18px;
+    }
+
+    @media (max-width: 420px) {
+      .topic-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .topic-tile {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 13px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .topic-tile-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 19px;
+      flex-shrink: 0;
+    }
+
+    .topic-tile strong {
+      display: block;
+      font-size: 13.8px;
+      color: var(--primary-dark);
+      line-height: 1.25;
+    }
+
+    .topic-tile span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .intro-note {
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-radius: 12px;
+      padding: 11px 14px;
+      font-size: 13.2px;
+      color: #6b4e1e;
+      margin-bottom: 16px;
+    }
+
+    /* =========================================================================
+       MÀN HÌNH 2: CHƠI GAME (10 TÌNH HUỐNG)
+       ========================================================================= */
+    .hud-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 14px rgba(27, 107, 82, 0.06);
+    }
+
+    .hud-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .step-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .score-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 13.5px;
+      font-weight: 700;
+      border: 1px solid #c6e5d9;
+      transition: transform 0.2s ease;
+    }
+
+    .score-pill.bump {
+      transform: scale(1.1);
+      background: #d3f2e3;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      background: #e8f1ed;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 10%;
+      background: linear-gradient(90deg, var(--primary) 0%, #37a580 100%);
+      border-radius: 999px;
+      transition: width 0.35s ease;
+    }
+
+    .topic-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent-soft);
+      color: #b84a2d;
+      border: 1px solid var(--accent-border);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .scenario-text {
+      font-size: 16.5px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option-btn {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      width: 100%;
+      text-align: left;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      font-family: inherit;
+      font-size: 14.8px;
+      line-height: 1.48;
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 0.18s ease, background 0.18s ease, transform 0.12s ease;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: #eff8f4;
+    }
+
+    .option-btn:active:not(:disabled) {
+      transform: scale(0.99);
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+    }
+
+    .option-letter {
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      background: #ffffff;
+      border: 1.5px solid #c9dfd6;
+      color: var(--primary-dark);
+      font-weight: 800;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .option-btn.correct {
+      background: var(--success-bg);
+      border-color: var(--success);
+      color: #0e4f32;
+    }
+
+    .option-btn.correct .option-letter {
+      background: var(--success);
+      border-color: var(--success);
+      color: #ffffff;
+    }
+
+    .option-btn.wrong {
+      background: var(--danger-bg);
+      border-color: var(--danger);
+      color: #87231e;
+    }
+
+    .option-btn.wrong .option-letter {
+      background: var(--danger);
+      border-color: var(--danger);
+      color: #ffffff;
+    }
+
+    .option-btn.dimmed {
+      opacity: 0.62;
+    }
+
+    /* Khung phản hồi Góc EQ & Pháp luật */
+    .feedback-box {
+      display: none;
+      margin-top: 16px;
+      border-radius: 16px;
+      padding: 16px;
+      border: 1.5px solid var(--border);
+      animation: fadeUp 0.25s ease;
+    }
+
+    .feedback-box.show {
+      display: block;
+    }
+
+    .feedback-box.is-correct {
+      background: #effaf4;
+      border-color: #9dd9bc;
+    }
+
+    .feedback-box.is-wrong {
+      background: #fff7f4;
+      border-color: #f3c6b8;
+    }
+
+    .feedback-status {
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .feedback-box.is-correct .feedback-status {
+      color: var(--success);
+    }
+
+    .feedback-box.is-wrong .feedback-status {
+      color: #b84a2d;
+    }
+
+    .feedback-tool {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      background: #ffffff;
+      color: var(--primary-dark);
+      border: 1px solid #cde4db;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .feedback-body {
+      font-size: 14.2px;
+      color: var(--text);
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+
+    /* =========================================================================
+       MÀN HÌNH 3: KẾT QUẢ (SUMMARY)
+       ========================================================================= */
+    .result-hero {
+      background: linear-gradient(135deg, var(--primary) 0%, #2a8c6c 100%);
+      color: #ffffff;
+      border-radius: 22px;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: 0 12px 28px rgba(27, 107, 82, 0.22);
+      margin-bottom: 16px;
+    }
+
+    .score-ring {
+      width: 124px;
+      height: 124px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.16);
+      border: 4px solid rgba(255, 255, 255, 0.88);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .score-ring .big-score {
+      font-size: 34px;
+      font-weight: 800;
+      line-height: 1.05;
+    }
+
+    .score-ring .max-score {
+      font-size: 13px;
+      opacity: 0.9;
+      font-weight: 600;
+    }
+
+    .rank-title {
+      font-size: 21px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .rank-desc {
+      font-size: 14.2px;
+      opacity: 0.95;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .keys-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .keys-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    @media (max-width: 480px) {
+      .keys-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .key-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 13px;
+    }
+
+    .key-item strong {
+      display: block;
+      font-size: 14px;
+      color: var(--primary-dark);
+      margin-bottom: 4px;
+    }
+
+    .key-item p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .action-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- THANH ĐIỀU HƯỚNG TRÊN CÙNG -->
+    <div class="top-bar">
+      <a href="index.html" class="back-pill">← Quay lại Trạm Sạc 4.0</a>
+      <button type="button" class="sound-btn" id="soundToggleBtn" aria-pressed="true">
+        🔊 Âm thanh: Bật
+      </button>
+    </div>
+
+    <!-- =======================================================================
+         MÀN HÌNH 1: BẮT ĐẦU (INTRO)
+         ======================================================================= -->
+    <section id="screenIntro" class="screen active">
+      <div class="intro-hero">
+        <span class="hero-badge">TRƯỜNG THPT ĐAKRÔNG • TRẠM SẠC CẢM XÚC 4.0</span>
+        <span class="hero-icon" aria-hidden="true">🧭</span>
+        <h1>NGÃ BA LỰA CHỌN:<br />RANH GIỚI AN TOÀN &amp; KỸ NĂNG ỨNG XỬ</h1>
+        <p>10 tình huống thực tế tuổi học trò – Rèn bản lĩnh Dừng lại, Suy nghĩ và Lựa chọn an toàn.</p>
+      </div>
+
+      <div class="card">
+        <div style="font-size: 15px; font-weight: 700; color: var(--primary-dark); margin-bottom: 4px;">
+          🎯 4 chủ đề bạn sẽ chinh phục:
+        </div>
+        <div class="topic-grid">
+          <div class="topic-tile">
+            <div class="topic-tile-icon">💛</div>
+            <div>
+              <strong>Ranh giới tình cảm</strong>
+              <span>Yêu tỉnh thức &amp; tôn trọng</span>
+            </div>
+          </div>
+          <div class="topic-tile">
+            <div class="topic-tile-icon">🌐</div>
+            <div>
+              <strong>An toàn mạng</strong>
+              <span>Né bẫy lừa đảo &amp; bắt nạt số</span>
+            </div>
+          </div>
+          <div class="topic-tile">
+            <div class="topic-tile-icon">🌿</div>
+            <div>
+              <strong>Ứng xử EQ</strong>
+              <span>Quy tắc 5N &amp; Đối tác gia đình</span>
+            </div>
+          </div>
+          <div class="topic-tile">
+            <div class="topic-tile-icon">🛡️</div>
+            <div>
+              <strong>Phòng vệ &amp; Pháp luật</strong>
+              <span>Nói KHÔNG &amp; Tổng đài 111</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="intro-note">
+          💡 <strong>Luật chơi nhẹ nhàng:</strong> Mỗi câu chọn hướng xử lý an toàn sẽ cộng <strong>+10 điểm Chỉ số An Toàn</strong> (tối đa 100 điểm). Ở đây không có sự phán xét — mỗi lựa chọn đều mở ra một bí kíp EQ hữu ích cho bạn!
+        </div>
+
+        <div class="action-stack" style="margin-top: 0;">
+          <button type="button" class="btn btn-primary" id="startBtn">
+            ▶ Bắt đầu thử thách
+          </button>
+          <a href="index.html" class="btn btn-soft">
+            ← Quay lại Trạm Sạc 4.0
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         MÀN HÌNH 2: CHƠI GAME (10 TÌNH HUỐNG)
+         ======================================================================= -->
+    <section id="screenPlay" class="screen">
+      <div class="hud-card">
+        <div class="hud-top">
+          <span class="step-label" id="stepLabel">Câu 1 / 10</span>
+          <span class="score-pill" id="scorePill">🛡️ Chỉ số An Toàn: <span id="scoreValue">0</span>/100</span>
+        </div>
+        <div class="progress-track" aria-label="Tiến độ trò chơi">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="topic-badge" id="topicBadge">💛 Ranh giới tình cảm</div>
+        <div class="scenario-text" id="scenarioText"></div>
+
+        <div class="options-list" id="optionsList"></div>
+
+        <div class="feedback-box" id="feedbackBox" aria-live="polite">
+          <div class="feedback-status" id="feedbackStatus"></div>
+          <div class="feedback-tool" id="feedbackTool"></div>
+          <p class="feedback-body" id="feedbackBody"></p>
+          <button type="button" class="btn btn-primary" id="nextBtn">
+            Tiếp theo →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         MÀN HÌNH 3: KẾT QUẢ (SUMMARY)
+         ======================================================================= -->
+    <section id="screenSummary" class="screen">
+      <div class="result-hero">
+        <div class="score-ring">
+          <span class="big-score" id="finalScore">0</span>
+          <span class="max-score">/ 100 điểm</span>
+        </div>
+        <div class="rank-title" id="rankTitle">🛡️ Đại Sứ An Toàn Xuất Sắc</div>
+        <p class="rank-desc" id="rankDesc"></p>
+      </div>
+
+      <div class="card">
+        <div class="keys-title">🔑 4 Chìa Khóa Bảo Vệ Bản Thân</div>
+        <div class="keys-grid">
+          <div class="key-item">
+            <strong>1. Ngã ba thần thánh</strong>
+            <p>Dừng lại (Pause) – Suy nghĩ (Think) – Lựa chọn (Choose) trước mọi quyết định cảm xúc.</p>
+          </div>
+          <div class="key-item">
+            <strong>2. Quy tắc 5N</strong>
+            <p>Ngưng – Nghe – Ngẫm – Nghĩ – Nói để làm dịu cơn giận và hóa giải xung đột văn minh.</p>
+          </div>
+          <div class="key-item">
+            <strong>3. Nói KHÔNG tôn trọng</strong>
+            <p>Trân trọng tình cảm – Khẳng định ranh giới – Giữ vững lập trường bảo vệ giá trị bản thân.</p>
+          </div>
+          <div class="key-item">
+            <strong>4. Tổng đài 111 &amp; Trạm Sạc 4.0</strong>
+            <p>Bạn không bao giờ đi một mình: gọi miễn phí 111 (24/7) hoặc nhắn ẩn danh về Phòng Tư vấn.</p>
+          </div>
+        </div>
+
+        <div class="action-stack">
+          <button type="button" class="btn btn-primary" id="replayBtn">
+            🔄 Chơi lại để đạt 100 điểm
+          </button>
+          <a href="index.html" class="btn btn-warm">
+            ← Về Trạm Sạc Cảm Xúc 4.0
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <strong>Tổ Tư vấn học đường &amp; Công tác xã hội – Trường THPT Đakrông</strong><br />
+      Trạm Sạc Cảm Xúc 4.0 • Lắng nghe nhịp đập – Thấu hiểu lựa chọn.
+    </footer>
+  </div>
+
+  <script>
+    // =========================================================================
+    // DỮ LIỆU 10 TÌNH HUỐNG THỰC TẾ TUỔI HỌC TRÒ
+    // =========================================================================
+    const QUESTIONS = [
+      {
+        topic: "💛 Ranh giới tình cảm",
+        scenario: "Người yêu rủ bạn đi đến một chỗ vắng chỉ có hai người và nói: “Nếu thương thật lòng thì phải chứng minh bằng hành động đi chứ”. Bạn sẽ chọn cách nào?",
+        options: [
+          {
+            text: "Từ chối kiên quyết nhưng tôn trọng theo 3 bước: ghi nhận tình cảm, khẳng định rõ ranh giới của mình và nói rằng người yêu thật lòng sẽ bảo vệ nhau.",
+            correct: true
+          },
+          {
+            text: "Miễn cưỡng đồng ý đi theo một lát cho người ấy vui lòng, vì sợ nếu nói lời từ chối thẳng thắn thì người ấy sẽ giận dỗi và đòi chia tay.",
+            correct: false
+          },
+          {
+            text: "Nổi nóng quát mắng ngay tại chỗ, chặn hết mọi liên lạc rồi đăng bài ẩn ý lên mạng xã hội để bạn bè xung quanh cùng biết chuyện.",
+            correct: false
+          }
+        ],
+        tool: "💡 Góc EQ & Pháp luật • Kỹ năng nói KHÔNG 3 bước & Quy tắc 5 ngón tay",
+        explanation: "Tình yêu chân chính luôn đi kèm sự tôn trọng ranh giới cơ thể và cảm xúc. Áp dụng 3 bước: (1) Trân trọng tình cảm – (2) Khẳng định ranh giới – (3) Nhắc nhẹ rằng người thương bạn thật lòng sẽ bảo vệ bạn, không bao giờ ép buộc bạn vượt qua giới hạn an toàn."
+      },
+      {
+        topic: "🌐 An toàn không gian mạng",
+        scenario: "Một tài khoản lạ trên mạng xã hội kết bạn, thường xuyên khen ngợi rất ngọt ngào rồi nhờ bạn gửi ảnh riêng tư và thông tin cá nhân để “làm quen thân hơn”. Bạn xử lý thế nào?",
+        options: [
+          {
+            text: "Từ chối ngay lập tức, tuyệt đối không gửi ảnh hay thông tin cá nhân, chặn tài khoản đó và báo cho người lớn tin cậy nếu tiếp tục bị làm phiền.",
+            correct: true
+          },
+          {
+            text: "Gửi tạm một tấm ảnh bình thường kèm số điện thoại và tên trường lớp, nghĩ rằng họ nói chuyện lịch sự như vậy chắc không có ý đồ xấu.",
+            correct: false
+          },
+          {
+            text: "Tiếp tục nhắn tin trêu đùa qua lại để xem họ định làm gì tiếp theo, và giữ kín chuyện này một mình không kể cho thầy cô hay gia đình.",
+            correct: false
+          }
+        ],
+        tool: "💡 Góc EQ & Pháp luật • Ngã ba thần thánh & Tự vệ số",
+        explanation: "Đằng sau những lời khen ngọt ngào từ người lạ trên mạng có thể là bẫy dụ dỗ, tống tiền hoặc xâm hại trực tuyến. Hãy Dừng lại – Suy nghĩ – Lựa chọn an toàn: không chia sẻ hình ảnh riêng tư, dữ liệu cá nhân và sẵn sàng chặn, báo cáo ngay."
+      },
+      {
+        topic: "🛡️ Phòng chống bạo lực học đường",
+        scenario: "Giờ tan học, bạn thấy một học sinh lớp khác đang bị một nhóm bạn chặn đường trêu chọc, đe dọa và có người giơ điện thoại lên quay clip. Bạn nên làm gì?",
+        options: [
+          {
+            text: "Không đứng ngoài quay clip hay hùa theo; nhanh chóng báo ngay cho thầy cô, chú bảo vệ trường hoặc gọi thêm người lớn gần đó đến hỗ trợ an toàn.",
+            correct: true
+          },
+          {
+            text: "Lấy điện thoại quay lại toàn bộ sự việc để đăng lên mạng xã hội tìm sự chú ý, rồi đứng xem cho đến khi nhóm bạn kia tự giải tán.",
+            correct: false
+          },
+          {
+            text: "Một mình lao thẳng vào xô đẩy nhóm bạn đang hung hăng đó dù không có ai đi cùng, hoặc lặng lẽ bỏ đi coi như không nhìn thấy gì.",
+            correct: false
+          }
+        ],
+        tool: "💡 Góc EQ & Pháp luật • Phòng chống bạo lực học đường",
+        explanation: "Im lặng hay quay clip đăng mạng đều vô tình tiếp tay làm tổn thương bạn mình nặng hơn, còn tự ý xô xát có thể gây nguy hiểm cho chính bạn. Cách bản lĩnh và an toàn nhất là kết nối ngay với thầy cô, bảo vệ hoặc người lớn để can thiệp kịp thời."
+      },
+      {
+        topic: "🛡️ Phòng tránh cám dỗ",
+        scenario: "Trong buổi tụ tập, nhóm bạn rủ bạn hút thử thuốc lá điện tử và khích bác: “Hút một hơi cho vui, thơm lắm không nghiện đâu, không thử là nhát gan”. Bạn chọn phản ứng nào?",
+        options: [
+          {
+            text: "Bình tĩnh từ chối thẳng thắn, giữ vững lập trường rồi khéo léo đổi chủ đề hoặc rời khỏi chỗ đó, vì bản lĩnh thật sự là dám nói Không với điều hại sức khỏe.",
+            correct: true
+          },
+          {
+            text: "Thử hút một hơi nhỏ để hòa đồng với cả nhóm cho đỡ bị chê là nhát gan, tự nhủ trong lòng là chỉ thử đúng một lần này thôi rồi bỏ.",
+            correct: false
+          },
+          {
+            text: "Cầm lấy điếu thuốc lá điện tử giả vờ ngậm trên miệng cho các bạn khỏi trêu chọc, sau đó mới tìm cách trả lại khi mọi người không để ý.",
+            correct: false
+          }
+        ],
+        tool: "💡 Góc EQ & Pháp luật • Tư duy Nam châm & Quy định pháp luật",
+        explanation: "Thuốc lá điện tử chứa nicotine gây nghiện rất nhanh, ảnh hưởng xấu đến não bộ tuổi vị thành niên và bị cấm trong trường học. Người có bản lĩnh không chạy theo áp lực đám đông mà tự tin nói KHÔNG để bảo vệ sức khỏe và tương lai của mình."
+      },
+      {
+        topic: "🌿 Ứng xử xung đột – Quy tắc 5N",
+        scenario: "Bị một bạn cùng lớp hiểu lầm và nói lời rất khó nghe trước mặt nhiều người khiến bạn đỏ mặt, tim đập nhanh vì quá nóng giận. Bạn sẽ làm gì lúc đó?",
+        options: [
+          {
+            text: "Áp dụng quy tắc 5N: ngưng lại 5 giây hít thở sâu, nghe rõ đầu đuôi câu chuyện rồi chọn lúc bình tĩnh để nói chuyện riêng và giải thích rõ với bạn.",
+            correct: true
+          },
+          {
+            text: "Lập tức đáp trả bằng những lời cay nghiệt hơn ngay trước cả lớp để giữ thể diện, không để người khác nghĩ rằng mình dễ bị bắt nạt.",
+            correct: false
+          },
+          {
+            text: "Im lặng bỏ về chỗ ngồi nhưng sau đó nhắn tin vào nhóm kín của lớp rủ các bạn khác cô lập và nói xấu lại người bạn kia cho bõ tức.",
+            correct: false
+          }
+        ],
+        tool: "💡 Góc EQ & Pháp luật • Quy tắc 5N (Ngưng – Nghe – Ngẫm – Nghĩ – Nói)",
+        explanation: "Khi cơn giận bùng lên, phần cảm xúc dễ lấn át lý trí. Chỉ cần Ngưng 5 giây và hít một hơi sâu, bạn sẽ tránh được những lời nói làm rạn nứt tình bạn, đồng thời giải quyết hiểu lầm một cách văn minh và trưởng thành hơn."
+      },
+      {
+        topic: "🌐 Lừa đảo trực tuyến",
+        scenario: "Bạn nhận được tin nhắn tuyển cộng tác viên online “việc nhẹ lương cao 500k/ngày”, chỉ cần chụp ảnh CCCD hai mặt và chuyển trước 200k tiền cọc để nhận việc. Bạn sẽ làm gì?",
+        options: [
+          {
+            text: "Nhận diện ngay đây là dấu hiệu lừa đảo trực tuyến, tuyệt đối không gửi giấy tờ tùy thân hay chuyển tiền cọc, đồng thời cảnh báo cho bạn bè biết.",
+            correct: true
+          },
+          {
+            text: "Chuyển thử 200k tiền cọc trước vì thấy số tiền không quá lớn, nếu làm được thật thì có thêm tiền phụ giúp gia đình và tiêu vặt hàng tháng.",
+            correct: false
+          },
+          {
+            text: "Chưa chuyển tiền ngay nhưng vẫn chụp ảnh CCCD gửi trước để giữ suất làm việc, rồi hỏi thêm thông tin chi tiết xem công việc có dễ không.",
+            correct: false
+          }
+        ],
+        tool: "💡 Góc EQ & Pháp luật • An toàn tài chính & Bảo mật dữ liệu cá nhân",
+        explanation: "Chiêu trò “việc nhẹ lương cao, yêu cầu chuyển tiền cọc hoặc gửi ảnh CCCD” là kịch bản lừa đảo cực kỳ phổ biến. Ảnh CCCD bị lộ có thể bị kẻ xấu dùng để vay nợ trái phép. Hãy luôn tỉnh táo, kiểm chứng qua người lớn và không chuyển tiền cho người lạ."
+      },
+      {
+        topic: "🌿 Giao tiếp gia đình – Chiến thuật Đối tác",
+        scenario: "Bố mẹ muốn bạn chọn ngành học theo định hướng của gia đình, nhưng bạn lại thích một ngành khác phù hợp với năng lực của mình. Hai bên đang rất dễ căng thẳng. Bạn chọn cách nào?",
+        options: [
+          {
+            text: "Dùng chiến thuật “Đối tác”: ghi nhận sự lo lắng của bố mẹ, chia sẻ bình tĩnh về sở thích của mình và đề xuất cùng ngồi lại xem thông tin ngành nghề.",
+            correct: true
+          },
+          {
+            text: "Cãi lại gay gắt rằng đây là cuộc đời của mình nên bố mẹ không có quyền can thiệp, sau đó đóng cửa phòng không nói chuyện với gia đình nữa.",
+            correct: false
+          },
+          {
+            text: "Im lặng gật đầu đồng ý cho xong chuyện để tránh cãi vã, nhưng trong lòng đầy ấm ức và dần mất hết động lực học tập trong suốt năm học.",
+            correct: false
+          }
+        ],
+        tool: "💡 Góc EQ & Pháp luật • Chiến thuật Đối tác (Ghi nhận – Chia sẻ – Đề xuất)",
+        explanation: "Bố mẹ thường xuất phát từ nỗi lo cho tương lai của con. Thay vì “đối đầu” hay “âm thầm chịu đựng”, hãy mời bố mẹ làm “đối tác”: lắng nghe góc nhìn của bố mẹ, mang kết quả trắc nghiệm Holland/Đa trí tuệ ra cùng phân tích để tìm tiếng nói chung."
+      },
+      {
+        topic: "🌐 Văn hóa mạng – Dừng 5 giây",
+        scenario: "Lướt mạng xã hội, bạn thấy một bài đăng chế ảnh xấu và bêu rếu một bạn cùng trường, bên dưới có rất nhiều bình luận chê cười sôi nổi. Bạn sẽ hành động thế nào?",
+        options: [
+          {
+            text: "Áp dụng quy tắc Dừng 5 giây: không thích, không chia sẻ, không bình luận hùa theo; báo cáo bài viết xấu và nhắn tin hỏi thăm, động viên bạn ấy.",
+            correct: true
+          },
+          {
+            text: "Bấm thả cảm xúc cười và bình luận vài câu trêu đùa cho vui, nghĩ rằng mạng xã hội ai cũng hay đùa như vậy nên chắc bạn kia không để bụng.",
+            correct: false
+          },
+          {
+            text: "Không bình luận công khai nhưng tải ảnh chế đó gửi vào nhóm chat riêng của lớp để mọi người cùng xem và bàn tán thêm về câu chuyện.",
+            correct: false
+          }
+        ],
+        tool: "💡 Góc EQ & Pháp luật • Dừng 5 giây & Pháp luật về bạo lực mạng",
+        explanation: "Mỗi lượt thích, chia sẻ hay bình luận ác ý đều là một nhát dao làm tổn thương sâu sắc người bị bêu rếu, đồng thời có thể vi phạm quy định pháp luật về xúc phạm danh dự người khác trên không gian mạng. Một tin nhắn hỏi thăm tử tế lúc này lại có sức mạnh chữa lành rất lớn."
+      },
+      {
+        topic: "💛 Ranh giới tình bạn",
+        scenario: "Một người bạn khá thân hay tự ý mở điện thoại đọc tin nhắn riêng của bạn và thường xuyên đùa giỡn đụng chạm cơ thể khiến bạn cảm thấy rất khó chịu. Bạn nên xử lý ra sao?",
+        options: [
+          {
+            text: "Nói thẳng cảm giác của mình một cách lịch sự nhưng rõ ràng về ranh giới riêng tư, đề nghị bạn tôn trọng điện thoại và cơ thể của mình.",
+            correct: true
+          },
+          {
+            text: "Cố gắng cười trừ cho qua mọi lần vì sợ nếu mình góp ý thẳng thắn thì bạn sẽ tự ái, mất lòng rồi tình bạn thân thiết không còn vui như trước.",
+            correct: false
+          },
+          {
+            text: "Không nói gì với bạn nhưng tự ý lấy đồ dùng hoặc xem trộm lại điện thoại của bạn ấy để bạn tự hiểu cảm giác khó chịu là như thế nào.",
+            correct: false
+          }
+        ],
+        tool: "💡 Góc EQ & Pháp luật • Quy tắc 5 ngón tay & Ranh giới lành mạnh",
+        explanation: "Dù là bạn thân đến đâu, mỗi người vẫn có quyền riêng tư về thông tin cá nhân và sự an toàn của cơ thể. Một tình bạn lành mạnh được xây trên sự tôn trọng ranh giới của nhau — người bạn thật sự quý mến bạn sẽ lắng nghe và thay đổi khi bạn chia sẻ chân thành."
+      },
+      {
+        topic: "🛡️ Tình huống khẩn cấp & Pháp luật",
+        scenario: "Khi bản thân hoặc người bạn thân đang bị đe dọa, xâm hại hoặc rơi vào bế tắc tâm lý nặng nhưng lại rất sợ gia đình la mắng, đâu là hướng đi an toàn nhất?",
+        options: [
+          {
+            text: "Tìm ngay sự trợ giúp an toàn qua Phòng Tư vấn / Trạm Sạc Cảm Xúc 4.0 (bảo mật), thầy cô tin cậy hoặc gọi miễn phí 24/7 Tổng đài Quốc gia Bảo vệ Trẻ em 111.",
+            correct: true
+          },
+          {
+            text: "Giữ kín mọi chuyện trong lòng và tự tìm cách chịu đựng một mình cho qua, vì nghĩ rằng kể ra sẽ làm mọi chuyện rắc rối và xấu hổ hơn.",
+            correct: false
+          },
+          {
+            text: "Lên các hội nhóm người lạ trên mạng kể toàn bộ câu chuyện và làm theo lời khuyên của họ mà không kiểm chứng xem có an toàn hay không.",
+            correct: false
+          }
+        ],
+        tool: "💡 Góc EQ & Pháp luật • Tổng đài 111 & Trạm Sạc Cảm Xúc 4.0",
+        explanation: "Trong những lúc nguy hiểm hoặc bế tắc nhất, bạn tuyệt đối không phải gồng mình một mình. Phòng Tư vấn học đường / Trạm Sạc 4.0 luôn cam kết bảo mật, lắng nghe không phán xét, và Tổng đài Quốc gia 111 luôn hoạt động miễn phí 24/7 để bảo vệ bạn."
+      }
+    ];
+
+    // =========================================================================
+    // HỆ THỐNG ÂM THANH (WEB AUDIO API – KHÔNG CẦN FILE MP3 NGOÀI)
+    // =========================================================================
+    let audioCtx = null;
+    let soundEnabled = true;
+
+    function ensureAudio() {
+      if (!soundEnabled) return null;
+      try {
+        if (!audioCtx) {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (AudioContextClass) {
+            audioCtx = new AudioContextClass();
+          }
+        }
+        if (audioCtx && audioCtx.state === "suspended") {
+          audioCtx.resume();
+        }
+        return audioCtx;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function playTone(freq, startOffset, duration, type, volume) {
+      const ctx = ensureAudio();
+      if (!ctx) return;
+      try {
+        const now = ctx.currentTime + startOffset;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = type || "sine";
+        osc.frequency.setValueAtTime(freq, now);
+
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.linearRampToValueAtTime(volume, now + 0.025);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + duration + 0.04);
+      } catch (e) {}
+    }
+
+    // Tiếng ting vui khi chọn đáp án an toàn
+    function playCorrectSound() {
+      playTone(587.33, 0, 0.22, "sine", 0.24);     // D5
+      playTone(880.0, 0.11, 0.38, "sine", 0.26);   // A5
+    }
+
+    // Tiếng trầm nhẹ, dịu dàng (không gây giật mình) khi chọn chưa an toàn
+    function playWrongSound() {
+      playTone(311.13, 0, 0.24, "triangle", 0.18); // Eb4
+      playTone(261.63, 0.14, 0.34, "triangle", 0.16); // C4
+    }
+
+    // Nhạc chúc mừng khi hoàn thành 10 tình huống
+    function playWinFanfare() {
+      const notes = [
+        { f: 523.25, t: 0.0, d: 0.22 },  // C5
+        { f: 659.25, t: 0.12, d: 0.22 }, // E5
+        { f: 783.99, t: 0.24, d: 0.24 }, // G5
+        { f: 1046.5, t: 0.38, d: 0.55 }  // C6
+      ];
+      notes.forEach((n) => playTone(n.f, n.t, n.d, "sine", 0.24));
+    }
+
+    // =========================================================================
+    // TRẠNG THÁI GAME & TIỆN ÍCH XÁO TRỘN
+    // =========================================================================
+    let currentIndex = 0;
+    let score = 0;
+    let answered = false;
+
+    const screenIntro = document.getElementById("screenIntro");
+    const screenPlay = document.getElementById("screenPlay");
+    const screenSummary = document.getElementById("screenSummary");
+
+    const soundToggleBtn = document.getElementById("soundToggleBtn");
+    const startBtn = document.getElementById("startBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const replayBtn = document.getElementById("replayBtn");
+
+    const stepLabel = document.getElementById("stepLabel");
+    const scorePill = document.getElementById("scorePill");
+    const scoreValue = document.getElementById("scoreValue");
+    const progressFill = document.getElementById("progressFill");
+    const topicBadge = document.getElementById("topicBadge");
+    const scenarioText = document.getElementById("scenarioText");
+    const optionsList = document.getElementById("optionsList");
+
+    const feedbackBox = document.getElementById("feedbackBox");
+    const feedbackStatus = document.getElementById("feedbackStatus");
+    const feedbackTool = document.getElementById("feedbackTool");
+    const feedbackBody = document.getElementById("feedbackBody");
+
+    const finalScore = document.getElementById("finalScore");
+    const rankTitle = document.getElementById("rankTitle");
+    const rankDesc = document.getElementById("rankDesc");
+
+    function showScreen(target) {
+      [screenIntro, screenPlay, screenSummary].forEach((s) => s.classList.remove("active"));
+      target.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Thuật toán Fisher-Yates xáo trộn đáp án mỗi lần chơi lại
+    function shuffleArray(arr) {
+      const copy = arr.slice();
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    // =========================================================================
+    // HIỂN THỊ TÌNH HUỐNG & XỬ LÝ LỰA CHỌN
+    // =========================================================================
+    function renderQuestion() {
+      const q = QUESTIONS[currentIndex];
+      answered = false;
+
+      // Cập nhật thanh tiến độ & điểm
+      stepLabel.textContent = `Câu ${currentIndex + 1} / ${QUESTIONS.length}`;
+      scoreValue.textContent = score;
+      progressFill.style.width = `${((currentIndex + 1) / QUESTIONS.length) * 100}%`;
+
+      // Cập nhật nội dung tình huống
+      topicBadge.textContent = q.topic;
+      scenarioText.textContent = q.scenario;
+
+      // Ẩn khung giải thích của câu trước
+      feedbackBox.className = "feedback-box";
+
+      // Xáo trộn 3 lựa chọn và gắn nhãn A, B, C
+      const shuffledOptions = shuffleArray(q.options);
+      const letters = ["A", "B", "C"];
+      optionsList.innerHTML = "";
+
+      shuffledOptions.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "option-btn";
+        btn.dataset.correct = opt.correct ? "1" : "0";
+
+        const letterSpan = document.createElement("span");
+        letterSpan.className = "option-letter";
+        letterSpan.textContent = letters[idx];
+
+        const textSpan = document.createElement("span");
+        textSpan.textContent = opt.text;
+
+        btn.appendChild(letterSpan);
+        btn.appendChild(textSpan);
+
+        btn.addEventListener("click", () => handleChoice(btn, opt.correct, q));
+        optionsList.appendChild(btn);
+      });
+
+      // Cập nhật chữ trên nút Tiếp theo
+      nextBtn.textContent = currentIndex === QUESTIONS.length - 1
+        ? "🎉 Xem kết quả thử thách →"
+        : "Tiếp theo →";
+    }
+
+    function handleChoice(selectedBtn, isCorrect, questionObj) {
+      if (answered) return;
+      answered = true;
+
+      const allBtns = optionsList.querySelectorAll(".option-btn");
+      allBtns.forEach((btn) => {
+        btn.disabled = true;
+        const btnIsCorrect = btn.dataset.correct === "1";
+
+        if (btn === selectedBtn) {
+          btn.classList.add(isCorrect ? "correct" : "wrong");
+        } else if (btnIsCorrect) {
+          btn.classList.add("correct");
+        } else {
+          btn.classList.add("dimmed");
+        }
+      });
+
+      if (isCorrect) {
+        score += 10;
+        scoreValue.textContent = score;
+        scorePill.classList.add("bump");
+        setTimeout(() => scorePill.classList.remove("bump"), 280);
+
+        playCorrectSound();
+        feedbackBox.className = "feedback-box show is-correct";
+        feedbackStatus.textContent = "✅ Chính xác! +10 điểm Chỉ số An Toàn";
+      } else {
+        playWrongSound();
+        feedbackBox.className = "feedback-box show is-wrong";
+        feedbackStatus.textContent = "🌿 Lựa chọn này chưa thật sự an toàn – Cùng xem gợi ý nhé!";
+      }
+
+      feedbackTool.textContent = questionObj.tool;
+      feedbackBody.textContent = questionObj.explanation;
+
+      // Cuộn nhẹ xuống để học sinh trên màn hình nhỏ thấy rõ giải thích và nút Tiếp theo
+      setTimeout(() => {
+        feedbackBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }, 80);
+    }
+
+    // =========================================================================
+    // MÀN HÌNH KẾT QUẢ & DANH HIỆU
+    // =========================================================================
+    function showSummary() {
+      finalScore.textContent = score;
+
+      if (score >= 90) {
+        rankTitle.textContent = "🛡️ Đại Sứ An Toàn Xuất Sắc";
+        rankDesc.textContent = "Tuyệt vời! Bạn có bản lĩnh rất vững vàng, biết cách làm chủ cảm xúc, giữ ranh giới an toàn và bảo vệ chính mình cũng như bạn bè xung quanh.";
+      } else if (score >= 70) {
+        rankTitle.textContent = "🌿 Người Trẻ Bản Lĩnh & Tỉnh Thức";
+        rankDesc.textContent = "Rất đáng khen! Bạn đã nắm vững phần lớn kỹ năng ứng xử EQ và tự vệ. Chơi thêm một lượt nữa để chinh phục trọn vẹn 100 điểm nhé!";
+      } else {
+        rankTitle.textContent = "🌱 Mầm Xanh Đang Trưởng Thành";
+        rankDesc.textContent = "Cảm ơn bạn đã hoàn thành thử thách! Không sao cả, mỗi tình huống vừa qua đều là một bài học quý để bạn thêm tỉnh táo và tự tin bảo vệ bản thân hơn mỗi ngày.";
+      }
+
+      showScreen(screenSummary);
+      playWinFanfare();
+    }
+
+    // =========================================================================
+    // BẮT ĐẦU / CHƠI LẠI / BẬT TẮT ÂM THANH
+    // =========================================================================
+    function startGame() {
+      ensureAudio();
+      currentIndex = 0;
+      score = 0;
+      showScreen(screenPlay);
+      renderQuestion();
+    }
+
+    startBtn.addEventListener("click", startGame);
+
+    nextBtn.addEventListener("click", () => {
+      if (currentIndex < QUESTIONS.length - 1) {
+        currentIndex++;
+        renderQuestion();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        showSummary();
+      }
+    });
+
+    replayBtn.addEventListener("click", startGame);
+
+    soundToggleBtn.addEventListener("click", () => {
+      soundEnabled = !soundEnabled;
+      soundToggleBtn.setAttribute("aria-pressed", String(soundEnabled));
+      if (soundEnabled) {
+        soundToggleBtn.textContent = "🔊 Âm thanh: Bật";
+        soundToggleBtn.classList.remove("muted");
+        playTone(659.25, 0, 0.18, "sine", 0.2);
+      } else {
+        soundToggleBtn.textContent = "🔇 Âm thanh: Tắt";
+        soundToggleBtn.classList.add("muted");
+      }
+    });
+  </script>
+</body>
+</html>
