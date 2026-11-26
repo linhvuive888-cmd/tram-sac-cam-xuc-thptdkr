@@ -276,24 +276,62 @@
       margin-top: 12px;
     }
 
-    /* Breathing 4-7-8 Widget */
+    /* Breathing Widget (4-7-8 & Box Breathing 4-4-4-4) */
     .breath-widget {
       text-align: center;
       background: linear-gradient(180deg, #eef8f4 0%, #ffffff 100%);
     }
 
+    .breath-mode-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      background: #e3f1eb;
+      padding: 5px;
+      border-radius: 14px;
+      margin-bottom: 14px;
+    }
+
+    .mode-tab {
+      border: none;
+      background: transparent;
+      color: var(--primary-dark);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      line-height: 1.3;
+    }
+
+    .mode-tab span {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 500;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    .mode-tab.active {
+      background: #ffffff;
+      color: var(--primary-dark);
+      box-shadow: 0 3px 10px rgba(27, 107, 82, 0.14);
+    }
+
     .breath-steps-bar {
       display: flex;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
       margin-bottom: 12px;
       flex-wrap: wrap;
     }
 
     .step-chip {
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 600;
-      padding: 5px 12px;
+      padding: 5px 11px;
       border-radius: 999px;
       background: #ffffff;
       color: var(--muted);
@@ -319,14 +357,21 @@
       border-color: #d97b54;
     }
 
-    .breath-circle-wrap {
-      height: 168px;
+    .step-chip.active-hold2 {
+      background: #6c63a6;
+      color: #ffffff;
+      border-color: #6c63a6;
+    }
+
+    .breath-visual-wrap {
+      height: 176px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 6px 0 10px;
     }
 
+    /* Circle for 4-7-8 */
     .breath-circle {
       width: 102px;
       height: 102px;
@@ -364,6 +409,85 @@
       transition: transform 8s ease-in-out, background 0.5s ease, box-shadow 0.5s ease;
     }
 
+    /* Square for Box Breathing (4-4-4-4) */
+    .breath-square-container {
+      display: none;
+      position: relative;
+      width: 144px;
+      height: 144px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .breath-square-track {
+      position: relative;
+      width: 132px;
+      height: 132px;
+      border-radius: 18px;
+      border: 4px solid #cbe3d9;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 22px rgba(27, 107, 82, 0.1);
+      transition: border-color 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .breath-square-track.inhale {
+      border-color: #1b6b52;
+      background: #eef9f4;
+      box-shadow: 0 0 0 10px rgba(27, 107, 82, 0.12);
+    }
+
+    .breath-square-track.hold {
+      border-color: #2f7d9c;
+      background: #eef6fa;
+      box-shadow: 0 0 0 10px rgba(47, 125, 156, 0.12);
+    }
+
+    .breath-square-track.exhale {
+      border-color: #d97b54;
+      background: #fdf3ee;
+      box-shadow: 0 0 0 10px rgba(217, 123, 84, 0.12);
+    }
+
+    .breath-square-track.hold2 {
+      border-color: #6c63a6;
+      background: #f3f1fa;
+      box-shadow: 0 0 0 10px rgba(108, 99, 166, 0.12);
+    }
+
+    .square-dot {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 3px solid #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+      top: -11px;
+      left: -11px;
+      /* Default at bottom-left corner: (0, 128px) */
+      transform: translate(0px, 128px);
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      z-index: 2;
+    }
+
+    .square-edge-label {
+      position: absolute;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.2px;
+      user-select: none;
+    }
+
+    .edge-left { left: -44px; top: 50%; transform: translateY(-50%); }
+    .edge-top { top: -22px; left: 50%; transform: translateX(-50%); }
+    .edge-right { right: -46px; top: 50%; transform: translateY(-50%); }
+    .edge-bottom { bottom: -22px; left: 50%; transform: translateX(-50%); }
+
     .breath-phase {
       font-size: 13px;
       font-weight: 600;
@@ -373,6 +497,28 @@
       font-size: 26px;
       line-height: 1.15;
     }
+
+    .square-phase {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .square-count {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.15;
+    }
+
+    .breath-square-track.hold .square-phase,
+    .breath-square-track.hold .square-count { color: #2b6f8a; }
+
+    .breath-square-track.exhale .square-phase,
+    .breath-square-track.exhale .square-count { color: #c96943; }
+
+    .breath-square-track.hold2 .square-phase,
+    .breath-square-track.hold2 .square-count { color: #5b5294; }
 
     .breath-cycle-info {
       font-size: 13px;
@@ -632,7 +778,7 @@
         <span class="status-dot"></span> Hòm thư được kiểm tra định kỳ mỗi ngày
       </div>
       <h3>Bạn đang có chuyện khó nói? Hãy chọn cách khiến bạn thấy an tâm nhất!</h3>
-      <p>Dù là vài dòng ẩn danh, một tin nhắn riêng hay buổi trò chuyện 1-1, bạn cứ thoải mái chia sẻ nhé - Cô luôn lắng nghe và tôn trọng mọi cảm xúc của bạn.</p>
+      <p>Dù là vài dòng ẩn danh, một tin nhắn riêng hay buổi trò chuyện 1-1, bạn cứ thoải mái chia sẻ nhé — Cô luôn lắng nghe và tôn trọng mọi cảm xúc của bạn.</p>
       <div class="btn-grid">
         <a href="#" class="btn btn-green" data-link="homThuAnDanh">📮 Gửi thư ẩn danh</a>
         <a href="#" class="btn btn-soft" data-link="nhanTinRieng">💬 Nhắn tin riêng (Messenger)</a>
@@ -643,7 +789,7 @@
         </a>
       </div>
       <div class="privacy-note">
-        <strong>💡 Mẹo nhỏ để bạn luôn thoải mái:</strong> Nếu bạn chọn đặt lịch gặp trực tiếp 1-1 qua nút trên, Cô sẽ chủ động mở sẵn cửa phòng đúng giờ hẹn (hoặc sắp xếp khung giờ yên tĩnh phù hợp) để bạn bước vào thật tự nhiên, riêng tư - và đừng ngại rủ thêm một người bạn thân đi cùng nếu bạn muốn nhé!
+        <strong>💡 Mẹo nhỏ để bạn luôn thoải mái:</strong> Nếu bạn chọn đặt lịch gặp trực tiếp 1-1 qua nút trên, Cô sẽ chủ động mở sẵn cửa phòng đúng giờ hẹn (hoặc sắp xếp khung giờ yên tĩnh phù hợp) để bạn bước vào thật tự nhiên, riêng tư — và đừng ngại rủ thêm một người bạn thân đi cùng nếu bạn muốn nhé!
       </div>
     </div>
 
@@ -664,24 +810,45 @@
       </div>
     </div>
 
-    <!-- 4. GÓC CHỮA LÀNH: THỞ 4-7-8 & THẢ TRÔI MUỘN PHIỀN -->
+    <!-- 4. GÓC CHỮA LÀNH: THỞ 4-7-8 / THỞ HÌNH VUÔNG & THẢ TRÔI MUỘN PHIỀN -->
     <div class="section-title">🌿 Góc Chữa lành &amp; Cân bằng cảm xúc</div>
 
-    <!-- Vòng tròn thở 4-7-8 chạy trực tiếp kèm âm thanh dẫn nhịp -->
+    <!-- Công cụ hít thở 2 chế độ: 4-7-8 và Hình vuông 4-4-4-4 -->
     <div class="card breath-widget">
-      <h3>Hạ nhiệt lo âu trong 1 phút (Kỹ thuật thở 4-7-8)</h3>
-      <p>Khi tim đập nhanh trước giờ thi, đang rất giận hoặc thấy ngột ngạt, hãy bấm Bắt đầu, nhắm mắt lại và lắng nghe tiếng chuông dẫn nhịp.</p>
-
-      <div class="breath-steps-bar">
-        <span class="step-chip" id="chipInhale">1. Hít vào (4s)</span>
-        <span class="step-chip" id="chipHold">2. Giữ hơi (7s)</span>
-        <span class="step-chip" id="chipExhale">3. Thở ra (8s)</span>
+      <div class="breath-mode-tabs" role="tablist">
+        <button type="button" class="mode-tab active" id="tab478" data-mode="478" role="tab" aria-selected="true">
+          🌙 Thở 4-7-8
+          <span>Hạ nhiệt lo âu, dễ ngủ</span>
+        </button>
+        <button type="button" class="mode-tab" id="tabBox" data-mode="box" role="tab" aria-selected="false">
+          🟦 Thở hình vuông (4-4-4-4)
+          <span>Bình tĩnh, tăng tập trung</span>
+        </button>
       </div>
 
-      <div class="breath-circle-wrap">
+      <h3 id="breathTitle">Hạ nhiệt lo âu trong 1 phút (Kỹ thuật thở 4-7-8)</h3>
+      <p id="breathDesc">Khi tim đập nhanh trước giờ thi, đang rất giận hoặc khó ngủ, hãy bấm Bắt đầu, nhắm mắt lại và lắng nghe tiếng chuông dẫn nhịp.</p>
+
+      <div class="breath-steps-bar" id="breathStepsBar"></div>
+
+      <div class="breath-visual-wrap">
+        <!-- Chế độ 1: Vòng tròn 4-7-8 -->
         <div class="breath-circle" id="breathCircle">
           <span class="breath-phase" id="breathPhase">Sẵn sàng</span>
           <span class="breath-count" id="breathCount">4-7-8</span>
+        </div>
+
+        <!-- Chế độ 2: Hình vuông 4-4-4-4 -->
+        <div class="breath-square-container" id="breathSquareWrap">
+          <div class="breath-square-track" id="breathSquareTrack">
+            <span class="square-edge-label edge-left">↑ Hít</span>
+            <span class="square-edge-label edge-top">Giữ →</span>
+            <span class="square-edge-label edge-right">Thở ↓</span>
+            <span class="square-edge-label edge-bottom">← Nghỉ</span>
+            <div class="square-dot" id="squareDot"></div>
+            <span class="square-phase" id="squarePhase">Sẵn sàng</span>
+            <span class="square-count" id="squareCount">4-4-4-4</span>
+          </div>
         </div>
       </div>
 
@@ -698,7 +865,7 @@
         </button>
       </div>
 
-      <div class="breath-audio-legend">
+      <div class="breath-audio-legend" id="breathAudioLegend">
         <strong>🎧 Tín hiệu âm thanh khi nhắm mắt:</strong><br />
         • <strong>Chuông ngân đi lên:</strong> Hít vào (4 giây) &nbsp;|&nbsp;
         <strong>Chuông trầm êm:</strong> Giữ hơi (7 giây) &nbsp;|&nbsp;
@@ -924,14 +1091,12 @@
       header.addEventListener("click", () => {
         const isAlreadyOpen = item.classList.contains("open");
 
-        // Đóng tất cả các mục khác để trang luôn gọn gàng
         accordionItems.forEach((other) => {
           other.classList.remove("open");
           other.querySelector(".accordion-header").setAttribute("aria-expanded", "false");
           other.querySelector(".accordion-icon").textContent = "+";
         });
 
-        // Nếu mục vừa bấm đang đóng thì mở ra
         if (!isAlreadyOpen) {
           item.classList.add("open");
           header.setAttribute("aria-expanded", "true");
@@ -1035,6 +1200,8 @@
       } else if (phaseCls === "exhale") {
         playChimeNote(659.25, 0, 1.1, 0.32);
         playChimeNote(523.25, 0.22, 1.7, 0.36);
+      } else if (phaseCls === "hold2") {
+        playChimeNote(329.63, 0, 1.6, 0.32);
       }
     }
 
@@ -1045,7 +1212,10 @@
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
 
-      const freq = phaseCls === "inhale" ? 820 : phaseCls === "hold" ? 620 : 480;
+      const freq =
+        phaseCls === "inhale" ? 820 :
+        phaseCls === "hold" ? 620 :
+        phaseCls === "exhale" ? 480 : 410;
       osc.type = "triangle";
       osc.frequency.setValueAtTime(freq, now);
       osc.frequency.exponentialRampToValueAtTime(freq * 0.6, now + 0.08);
@@ -1061,64 +1231,163 @@
     }
 
     // =========================================================================
-    // TÍNH NĂNG ĐỒNG HỒ HÍT THỞ 4-7-8 (ĐẾM LÙI TỪNG GIÂY & LẶP LIÊN TỤC)
+    // TÍNH NĂNG HÍT THỞ 2 CHẾ ĐỘ: 4-7-8 & THỞ HÌNH VUÔNG (4-4-4-4)
     // =========================================================================
+    const breathTitle = document.getElementById("breathTitle");
+    const breathDesc = document.getElementById("breathDesc");
+    const breathStepsBar = document.getElementById("breathStepsBar");
+    const breathAudioLegend = document.getElementById("breathAudioLegend");
+
     const breathCircle = document.getElementById("breathCircle");
     const breathPhase = document.getElementById("breathPhase");
     const breathCount = document.getElementById("breathCount");
+
+    const breathSquareWrap = document.getElementById("breathSquareWrap");
+    const breathSquareTrack = document.getElementById("breathSquareTrack");
+    const squareDot = document.getElementById("squareDot");
+    const squarePhase = document.getElementById("squarePhase");
+    const squareCount = document.getElementById("squareCount");
+
     const breathCycleInfo = document.getElementById("breathCycleInfo");
     const breathBtn = document.getElementById("breathBtn");
     const soundToggleBtn = document.getElementById("soundToggleBtn");
+    const modeTabs = document.querySelectorAll(".mode-tab");
 
-    const chipInhale = document.getElementById("chipInhale");
-    const chipHold = document.getElementById("chipHold");
-    const chipExhale = document.getElementById("chipExhale");
+    const MODES = {
+      "478": {
+        title: "Hạ nhiệt lo âu trong 1 phút (Kỹ thuật thở 4-7-8)",
+        desc: "Khi tim đập nhanh trước giờ thi, đang rất giận hoặc khó ngủ, hãy bấm Bắt đầu, nhắm mắt lại và lắng nghe tiếng chuông dẫn nhịp.",
+        idleCode: "4-7-8",
+        legend: `<strong>🎧 Tín hiệu âm thanh khi nhắm mắt:</strong><br />
+          • <strong>Chuông ngân đi lên:</strong> Hít vào (4 giây) &nbsp;|&nbsp;
+          <strong>Chuông trầm êm:</strong> Giữ hơi (7 giây) &nbsp;|&nbsp;
+          <strong>Chuông ngân đi xuống:</strong> Thở ra (8 giây)<br />
+          • <strong>Tiếng gõ gỗ nhẹ (tíc-tắc):</strong> Đếm từng giây lùi kèm nhạc nền thư giãn dịu nhẹ.`,
+        steps: [
+          { label: "Hít vào", chipText: "1. Hít vào (4s)", seconds: 4, cls: "inhale", chipCls: "active-inhale" },
+          { label: "Giữ hơi", chipText: "2. Giữ hơi (7s)", seconds: 7, cls: "hold", chipCls: "active-hold" },
+          { label: "Thở ra", chipText: "3. Thở ra (8s)", seconds: 8, cls: "exhale", chipCls: "active-exhale" }
+        ]
+      },
+      "box": {
+        title: "Lấy lại bình tĩnh & tập trung (Kỹ thuật thở hình vuông)",
+        desc: "Theo dõi chấm sáng chạy dọc 4 cạnh hình vuông (4 giây mỗi cạnh) để nhịp tim ổn định và đầu óc sáng suốt trở lại.",
+        idleCode: "4-4-4-4",
+        legend: `<strong>🎧 Tín hiệu âm thanh khi nhắm mắt:</strong><br />
+          • <strong>Chuông đi lên:</strong> Hít vào (4s) &nbsp;|&nbsp;
+          <strong>Chuông êm:</strong> Giữ hơi (4s) &nbsp;|&nbsp;
+          <strong>Chuông đi xuống:</strong> Thở ra (4s) &nbsp;|&nbsp;
+          <strong>Chuông trầm:</strong> Nghỉ (4s)<br />
+          • <strong>Tiếng gõ gỗ nhẹ (tíc-tắc):</strong> Đếm đều 4 giây cho mỗi cạnh hình vuông.`,
+        steps: [
+          { label: "Hít vào", chipText: "1. Hít vào (4s)", seconds: 4, cls: "inhale", chipCls: "active-inhale", dotFrom: [0, 128], dotTo: [0, 0], dotColor: "#1b6b52" },
+          { label: "Giữ hơi", chipText: "2. Giữ hơi (4s)", seconds: 4, cls: "hold", chipCls: "active-hold", dotFrom: [0, 0], dotTo: [128, 0], dotColor: "#2f7d9c" },
+          { label: "Thở ra", chipText: "3. Thở ra (4s)", seconds: 4, cls: "exhale", chipCls: "active-exhale", dotFrom: [128, 0], dotTo: [128, 128], dotColor: "#d97b54" },
+          { label: "Nghỉ / Giữ", chipText: "4. Nghỉ (4s)", seconds: 4, cls: "hold2", chipCls: "active-hold2", dotFrom: [128, 128], dotTo: [0, 128], dotColor: "#6c63a6" }
+        ]
+      }
+    };
 
+    let currentMode = "478";
     let isBreathing = false;
     let breathTimer = null;
     let currentStepIndex = 0;
     let currentSecLeft = 4;
     let cycleCount = 1;
+    let stepChipEls = [];
 
-    const steps = [
-      { label: "Hít vào", seconds: 4, cls: "inhale", chip: chipInhale, chipCls: "active-inhale" },
-      { label: "Giữ hơi", seconds: 7, cls: "hold", chip: chipHold, chipCls: "active-hold" },
-      { label: "Thở ra", seconds: 8, cls: "exhale", chip: chipExhale, chipCls: "active-exhale" }
-    ];
+    function renderModeUI() {
+      const cfg = MODES[currentMode];
+      breathTitle.textContent = cfg.title;
+      breathDesc.textContent = cfg.desc;
+      breathAudioLegend.innerHTML = cfg.legend;
+
+      // Render chips
+      breathStepsBar.innerHTML = "";
+      stepChipEls = cfg.steps.map((s) => {
+        const span = document.createElement("span");
+        span.className = "step-chip";
+        span.textContent = s.chipText;
+        breathStepsBar.appendChild(span);
+        return span;
+      });
+
+      if (currentMode === "478") {
+        breathCircle.style.display = "flex";
+        breathSquareWrap.style.display = "none";
+        breathCircle.className = "breath-circle";
+        breathPhase.textContent = "Sẵn sàng";
+        breathCount.textContent = cfg.idleCode;
+      } else {
+        breathCircle.style.display = "none";
+        breathSquareWrap.style.display = "flex";
+        breathSquareTrack.className = "breath-square-track";
+        squarePhase.textContent = "Sẵn sàng";
+        squareCount.textContent = cfg.idleCode;
+        squareDot.style.transition = "none";
+        squareDot.style.transform = "translate(0px, 128px)";
+        squareDot.style.backgroundColor = "#1b6b52";
+      }
+
+      breathCycleInfo.textContent = 'Bấm "Bắt đầu hít thở" để chạy lặp liên tục cho đến khi bạn bấm dừng';
+    }
 
     function clearStepChips() {
-      chipInhale.className = "step-chip";
-      chipHold.className = "step-chip";
-      chipExhale.className = "step-chip";
+      stepChipEls.forEach((el) => {
+        el.className = "step-chip";
+      });
     }
 
     function renderPhaseStart() {
-      const s = steps[currentStepIndex];
+      const cfg = MODES[currentMode];
+      const s = cfg.steps[currentStepIndex];
+
       clearStepChips();
-      s.chip.classList.add(s.chipCls);
+      if (stepChipEls[currentStepIndex]) {
+        stepChipEls[currentStepIndex].classList.add(s.chipCls);
+      }
 
-      breathCircle.className = "breath-circle " + s.cls;
-      breathPhase.textContent = s.label;
-      breathCount.textContent = currentSecLeft;
+      if (currentMode === "478") {
+        breathCircle.className = "breath-circle " + s.cls;
+        breathPhase.textContent = s.label;
+        breathCount.textContent = currentSecLeft;
+      } else {
+        breathSquareTrack.className = "breath-square-track " + s.cls;
+        squarePhase.textContent = s.label;
+        squareCount.textContent = currentSecLeft;
+
+        // Đặt chấm về điểm bắt đầu cạnh rồi trượt mượt trong đúng 4 giây
+        squareDot.style.transition = "none";
+        squareDot.style.transform = `translate(${s.dotFrom[0]}px, ${s.dotFrom[1]}px)`;
+        squareDot.style.backgroundColor = s.dotColor;
+        void squareDot.offsetWidth;
+        squareDot.style.transition = `transform ${s.seconds}s linear, background-color 0.3s ease`;
+        squareDot.style.transform = `translate(${s.dotTo[0]}px, ${s.dotTo[1]}px)`;
+      }
+
       breathCycleInfo.textContent = `Chu kỳ ${cycleCount} • ${s.label} (${currentSecLeft} giây)`;
-
       playPhaseCue(s.cls);
     }
 
     function tickBreathing() {
       if (!isBreathing) return;
+      const cfg = MODES[currentMode];
       currentSecLeft--;
 
       if (currentSecLeft <= 0) {
-        currentStepIndex = (currentStepIndex + 1) % steps.length;
+        currentStepIndex = (currentStepIndex + 1) % cfg.steps.length;
         if (currentStepIndex === 0) {
           cycleCount++;
         }
-        currentSecLeft = steps[currentStepIndex].seconds;
+        currentSecLeft = cfg.steps[currentStepIndex].seconds;
         renderPhaseStart();
       } else {
-        const s = steps[currentStepIndex];
-        breathCount.textContent = currentSecLeft;
+        const s = cfg.steps[currentStepIndex];
+        if (currentMode === "478") {
+          breathCount.textContent = currentSecLeft;
+        } else {
+          squareCount.textContent = currentSecLeft;
+        }
         breathCycleInfo.textContent = `Chu kỳ ${cycleCount} • ${s.label} (còn ${currentSecLeft} giây)`;
         playSecondTick(s.cls);
       }
@@ -1127,10 +1396,11 @@
     }
 
     function startBreathing() {
+      const cfg = MODES[currentMode];
       initAudio();
       isBreathing = true;
       currentStepIndex = 0;
-      currentSecLeft = steps[0].seconds;
+      currentSecLeft = cfg.steps[0].seconds;
       cycleCount = 1;
 
       breathBtn.textContent = "⏹ Dừng lại";
@@ -1138,8 +1408,11 @@
       breathBtn.classList.add("btn-warm");
 
       startAmbientPad();
-      breathCircle.className = "breath-circle";
-      void breathCircle.offsetWidth;
+
+      if (currentMode === "478") {
+        breathCircle.className = "breath-circle";
+        void breathCircle.offsetWidth;
+      }
 
       renderPhaseStart();
       breathTimer = setTimeout(tickBreathing, 1000);
@@ -1152,15 +1425,28 @@
       stopAmbientPad();
 
       clearStepChips();
-      breathCircle.className = "breath-circle";
-      breathPhase.textContent = "Sẵn sàng";
-      breathCount.textContent = "4-7-8";
-      breathCycleInfo.textContent = 'Bấm "Bắt đầu hít thở" để chạy lặp liên tục cho đến khi bạn bấm dừng';
+      renderModeUI();
 
       breathBtn.textContent = "▶ Bắt đầu hít thở";
       breathBtn.classList.remove("btn-warm");
       breathBtn.classList.add("btn-green");
     }
+
+    modeTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const selected = tab.getAttribute("data-mode");
+        if (selected === currentMode) return;
+        if (isBreathing) stopBreathing();
+
+        currentMode = selected;
+        modeTabs.forEach((t) => {
+          const active = t === tab;
+          t.classList.toggle("active", active);
+          t.setAttribute("aria-selected", active ? "true" : "false");
+        });
+        renderModeUI();
+      });
+    });
 
     breathBtn.addEventListener("click", () => {
       if (!isBreathing) {
@@ -1184,6 +1470,9 @@
         stopAmbientPad();
       }
     });
+
+    // Khởi tạo giao diện hít thở ban đầu
+    renderModeUI();
 
     // =========================================================================
     // TÍNH NĂNG GÓC "THẢ TRÔI MUỘN PHIỀN" (CHỈ XỬ LÝ TẠI MÁY, KHÔNG LƯU TRỮ)
