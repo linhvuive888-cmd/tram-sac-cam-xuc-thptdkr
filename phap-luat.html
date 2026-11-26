@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>⚖️ Quyền &amp; Nghĩa vụ Học sinh – Trường THPT Đakrông</title>
+  <style>
+    /* =========================================================================
+       BẢNG MÀU & BIẾN THIẾT KẾ (ĐỒNG BỘ TRẠM SẠC CẢM XÚC 4.0)
+       ========================================================================= */
+    :root {
+      --primary: #1b6b52;
+      --primary-light: #e6f4ef;
+      --primary-dark: #124c3a;
+      --accent: #e07a5f;
+      --accent-soft: #fff1ec;
+      --accent-border: #f7d5ca;
+      --bg: #f6faf8;
+      --card: #ffffff;
+      --text: #1f2d28;
+      --muted: #5a6d66;
+      --border: #dce8e3;
+      --success: #168052;
+      --success-bg: #e7f7ef;
+      --danger: #c83e37;
+      --danger-bg: #fdeeed;
+      --radius: 16px;
+      --shadow: 0 6px 20px rgba(27, 107, 82, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 36px;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 14px 16px 24px;
+    }
+
+    /* =========================================================================
+       THANH QUAY VỀ & HEADER
+       ========================================================================= */
+    .top-nav {
+      margin-bottom: 14px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--primary-dark);
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13.5px;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(27, 107, 82, 0.06);
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .back-link:active {
+      transform: scale(0.97);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, #2a8c6c 100%);
+      color: #ffffff;
+      border-radius: 22px;
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: 0 10px 26px rgba(27, 107, 82, 0.2);
+      margin-bottom: 16px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.18);
+      padding: 4px 13px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      margin-bottom: 10px;
+    }
+
+    .hero h1 {
+      font-size: 23px;
+      line-height: 1.28;
+      margin-bottom: 8px;
+      font-weight: 800;
+    }
+
+    .hero p {
+      font-size: 14px;
+      opacity: 0.95;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* =========================================================================
+       THANH CHUYỂN TAB (4 TAB GỌN GÀNG TRÊN ĐIỆN THOẠI)
+       ========================================================================= */
+    .tabs-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 6px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 12px rgba(27, 107, 82, 0.06);
+      position: sticky;
+      top: 8px;
+      z-index: 20;
+    }
+
+    .tab-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      padding: 9px 4px;
+      border: none;
+      border-radius: 12px;
+      background: transparent;
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.2;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.12s ease;
+    }
+
+    .tab-btn .tab-ico {
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 10px rgba(27, 107, 82, 0.22);
+    }
+
+    .tab-btn:active {
+      transform: scale(0.96);
+    }
+
+    .tab-panel {
+      display: none;
+      animation: fadeUp 0.28s ease;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================================================================
+       THẺ NỘI DUNG & ACCORDION (TAB 1)
+       ========================================================================= */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .panel-intro {
+      font-size: 13.5px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .accordion-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(27, 107, 82, 0.05);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .accordion-item.open {
+      border-color: var(--primary);
+      box-shadow: 0 6px 16px rgba(27, 107, 82, 0.12);
+    }
+
+    .accordion-header {
+      width: 100%;
+      background: transparent;
+      border: none;
+      padding: 15px 15px;
+      font-family: inherit;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .accordion-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .accordion-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .accordion-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      flex-shrink: 0;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .accordion-item.open .accordion-icon {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .accordion-body {
+      display: none;
+      padding: 12px 16px 15px;
+      font-size: 14px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      background: #fcfefd;
+    }
+
+    .accordion-item.open .accordion-body {
+      display: block;
+    }
+
+    .accordion-body ul {
+      padding-left: 18px;
+      margin-top: 6px;
+    }
+
+    .accordion-body li {
+      margin-bottom: 5px;
+    }
+
+    .law-tag {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      background: var(--primary-light);
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    /* =========================================================================
+       TAB 2: NGHĨA VỤ & KHUNG CẢNH BÁO MÀU ẤM
+       ========================================================================= */
+    .section-heading {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .duty-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .duty-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 14px;
+    }
+
+    .duty-badge {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .duty-item strong {
+      color: var(--primary-dark);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .duty-item span {
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+
+    .warning-card {
+      background: var(--accent-soft);
+      border: 1.5px solid var(--accent-border);
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+
+    .warning-title {
+      font-size: 15.5px;
+      font-weight: 800;
+      color: #b54527;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .forbid-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .forbid-list li {
+      background: #ffffff;
+      border: 1px solid var(--accent-border);
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 13.8px;
+      color: var(--text);
+    }
+
+    .forbid-list li strong {
+      color: #a93c20;
+    }
+
+    /* =========================================================================
+       TAB 3: QUY TRÌNH 3 BƯỚC BẢO VỆ BẢN THÂN
+       ========================================================================= */
+    .step-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+
+    .step-card:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .step-circle {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-content strong {
+      display: block;
+      font-size: 14.8px;
+      color: var(--primary-dark);
+      margin-bottom: 3px;
+    }
+
+    .step-content p {
+      font-size: 13.8px;
+      color: var(--muted);
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: none;
+      text-decoration: none;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-emergency {
+      background: #d93829;
+      color: #ffffff;
+      box-shadow: 0 6px 16px rgba(217, 56, 41, 0.25);
+      margin-bottom: 10px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 6px 16px rgba(27, 107, 82, 0.2);
+    }
+
+    .btn-soft {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border: 1px solid #cce6dc;
+    }
+
+    /* =========================================================================
+       TAB 4: ĐỐ VUI 5 CÂU ĐÚNG/SAI
+       ========================================================================= */
+    .quiz-hud {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: var(--primary-light);
+      border: 1px solid #cde6dc;
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      font-size: 13.8px;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .quiz-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 12px rgba(27, 107, 82, 0.05);
+    }
+
+    .quiz-q {
+      font-size: 14.8px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      line-height: 1.48;
+    }
+
+    .quiz-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .quiz-btn {
+      padding: 11px 12px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .quiz-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .quiz-btn:disabled {
+      cursor: default;
+    }
+
+    .quiz-btn.selected-correct {
+      background: var(--success-bg);
+      border-color: var(--success);
+      color: #0e4f32;
+    }
+
+    .quiz-btn.selected-wrong {
+      background: var(--danger-bg);
+      border-color: var(--danger);
+      color: #87231e;
+    }
+
+    .quiz-btn.dimmed {
+      opacity: 0.55;
+    }
+
+    .quiz-feedback {
+      display: none;
+      margin-top: 12px;
+      padding: 11px 13px;
+      border-radius: 12px;
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+
+    .quiz-feedback.show {
+      display: block;
+    }
+
+    .quiz-feedback.ok {
+      background: var(--success-bg);
+      color: #105436;
+      border: 1px solid #a9dfc4;
+    }
+
+    .quiz-feedback.no {
+      background: var(--accent-soft);
+      color: #8c341d;
+      border: 1px solid var(--accent-border);
+    }
+
+    .quiz-summary {
+      display: none;
+      text-align: center;
+      background: linear-gradient(135deg, var(--primary) 0%, #2a8c6c 100%);
+      color: #ffffff;
+      border-radius: 18px;
+      padding: 22px 18px;
+      margin-top: 14px;
+    }
+
+    .quiz-summary.show {
+      display: block;
+      animation: fadeUp 0.3s ease;
+    }
+
+    .quiz-summary h3 {
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+
+    .quiz-summary p {
+      font-size: 14px;
+      opacity: 0.95;
+      margin-bottom: 16px;
+    }
+
+    .btn-white {
+      background: #ffffff;
+      color: var(--primary-dark);
+    }
+
+    /* =========================================================================
+       FOOTER
+       ========================================================================= */
+    footer {
+      text-align: center;
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-top: 24px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      line-height: 1.55;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- NÚT QUAY VỀ TRẠM SẠC 4.0 -->
+    <div class="top-nav">
+      <a href="index.html" class="back-link">← Quay về Trạm Sạc 4.0</a>
+    </div>
+
+    <!-- HEADER CHÍNH -->
+    <header class="hero">
+      <span class="hero-badge">TRƯỜNG THPT ĐAKRÔNG • TỔ TƯ VẤN HỌC ĐƯỜNG</span>
+      <h1>⚖️ Quyền &amp; Nghĩa vụ Học sinh</h1>
+      <p>Cẩm nang pháp luật bỏ túi – Hiểu luật để tự tin bảo vệ bản thân &amp; ứng xử văn minh</p>
+    </header>
+
+    <!-- THANH CHUYỂN 4 TAB -->
+    <nav class="tabs-bar" role="tablist" aria-label="Danh mục quyền và nghĩa vụ học sinh">
+      <button type="button" class="tab-btn active" role="tab" aria-selected="true" data-tab="tabQuyen">
+        <span class="tab-ico">🛡️</span>
+        <span>Quyền của em</span>
+      </button>
+      <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="tabNghiaVu">
+        <span class="tab-ico">📌</span>
+        <span>Nghĩa vụ</span>
+      </button>
+      <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="tabBaoVe">
+        <span class="tab-ico">🆘</span>
+        <span>Bảo vệ</span>
+      </button>
+      <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="tabDoVui">
+        <span class="tab-ico">❓</span>
+        <span>Đố vui 5 câu</span>
+      </button>
+    </nav>
+
+    <!-- =======================================================================
+         TAB 1: 🛡️ QUYỀN CỦA EM (ACCORDION)
+         ======================================================================= -->
+    <section id="tabQuyen" class="tab-panel active" role="tabpanel">
+      <p class="panel-intro">👇 Chạm vào từng mục để xem chi tiết 5 quyền cơ bản của học sinh THPT:</p>
+
+      <div class="accordion-item open">
+        <button type="button" class="accordion-header" aria-expanded="true">
+          <span class="accordion-title-wrap">
+            <span class="accordion-num">1</span>
+            <span>Quyền được học tập, phát triển năng lực &amp; định hướng nghề nghiệp</span>
+          </span>
+          <span class="accordion-icon">−</span>
+        </button>
+        <div class="accordion-body">
+          Bạn có quyền được bình đẳng trong cơ hội học tập, phát huy năng khiếu, sở thích cá nhân và tiếp cận thông tin hướng nghiệp để lựa chọn con đường phù hợp sau THPT.
+          <ul>
+            <li>Được hướng dẫn phương pháp học tập, sử dụng cơ sở vật chất, thư viện và thiết bị học tập của nhà trường.</li>
+            <li>Được tư vấn hướng nghiệp, làm các bài trắc nghiệm khám phá bản thân (Holland, Đa trí tuệ, DISC, Ikigai).</li>
+          </ul>
+          <span class="law-tag">Căn cứ: Luật Giáo dục 2019 &amp; Điều lệ trường THPT</span>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button type="button" class="accordion-header" aria-expanded="false">
+          <span class="accordion-title-wrap">
+            <span class="accordion-num">2</span>
+            <span>Quyền được tôn trọng, bảo vệ thân thể, danh dự và nhân phẩm</span>
+          </span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          Mọi học sinh đều có quyền được sống và học tập trong môi trường an toàn, lành mạnh, không có bạo lực hay sự phân biệt đối xử.
+          <ul>
+            <li>Không ai có quyền đánh đập, đe dọa, bắt nạt, xúc phạm danh dự bạn (cả ngoài đời thực lẫn trên mạng xã hội).</li>
+            <li>Bạn có quyền từ chối mọi hành vi đụng chạm cơ thể khiến bạn thấy khó chịu hoặc không an toàn.</li>
+          </ul>
+          <span class="law-tag">Căn cứ: Luật Giáo dục 2019 &amp; Nghị định 80/2017/NĐ-CP</span>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button type="button" class="accordion-header" aria-expanded="false">
+          <span class="accordion-title-wrap">
+            <span class="accordion-num">3</span>
+            <span>Quyền được tư vấn tâm lý, công tác xã hội &amp; BẢO MẬT THÔNG TIN</span>
+          </span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          Khi gặp áp lực học tập, chuyện gia đình, bạn bè hay rối bời cảm xúc, bạn hoàn toàn có quyền tìm đến Phòng Tư vấn học đường để được lắng nghe và hỗ trợ miễn phí.
+          <ul>
+            <li><strong>Bảo mật tuyệt đối:</strong> Thông tin cá nhân và câu chuyện của bạn được giữ kín theo nguyên tắc đạo đức nghề nghiệp (trừ trường hợp khẩn cấp đe dọa trực tiếp đến tính mạng, an toàn của bạn).</li>
+            <li><strong>Quyền tự nguyện:</strong> Bạn có quyền chọn tư vấn ẩn danh, trực tuyến hoặc trực tiếp 1-1.</li>
+          </ul>
+          <span class="law-tag">Căn cứ: Điều 4, Thông tư 18/2025/TT-BGDĐT</span>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button type="button" class="accordion-header" aria-expanded="false">
+          <span class="accordion-title-wrap">
+            <span class="accordion-num">4</span>
+            <span>Quyền bày tỏ ý kiến, tham gia CLB &amp; đóng góp xây dựng nhà trường</span>
+          </span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          Tiếng nói của bạn luôn được lắng nghe và tôn trọng trong các hoạt động chung của lớp và nhà trường.
+          <ul>
+            <li>Được tham gia các hoạt động Đoàn thanh niên, CLB EQ, CLB Phát thanh, thể thao, văn nghệ phù hợp với sở thích.</li>
+            <li>Được thẳng thắn góp ý (trực tiếp hoặc qua Hòm thư ẩn danh) để cải thiện môi trường học tập tốt hơn.</li>
+          </ul>
+          <span class="law-tag">Căn cứ: Điều lệ trường THPT</span>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button type="button" class="accordion-header" aria-expanded="false">
+          <span class="accordion-title-wrap">
+            <span class="accordion-num">5</span>
+            <span>Quyền hưởng chế độ chính sách, học bổng &amp; hỗ trợ xã hội</span>
+          </span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          Nhà nước và nhà trường luôn có các chính sách thiết thực nhằm hỗ trợ học sinh vượt khó vươn lên.
+          <ul>
+            <li>Học sinh là người dân tộc thiểu số, thuộc hộ nghèo/cận nghèo hoặc có hoàn cảnh đặc biệt khó khăn được hưởng miễn giảm học phí, hỗ trợ chi phí học tập, trợ cấp theo quy định hiện hành.</li>
+            <li>Được ưu tiên xét cấp học bổng khuyến học và hỗ trợ từ các chương trình an sinh xã hội của nhà trường.</li>
+          </ul>
+          <span class="law-tag">Căn cứ: Luật Giáo dục 2019 &amp; Thông tư 18/2025/TT-BGDĐT</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         TAB 2: 📌 NGHĨA VỤ & CẦN TRÁNH
+         ======================================================================= -->
+    <section id="tabNghiaVu" class="tab-panel" role="tabpanel">
+      <div class="card">
+        <h2 class="section-heading">📘 5 Nghĩa vụ cốt lõi của học sinh THPT</h2>
+        <ul class="duty-list">
+          <li class="duty-item">
+            <span class="duty-badge">1</span>
+            <div>
+              <strong>Học tập &amp; rèn luyện nghiêm túc</strong>
+              <span>Thực hiện nhiệm vụ học tập theo chương trình giáo dục, chủ động rèn luyện đạo đức, kỹ năng sống và thể chất.</span>
+            </div>
+          </li>
+          <li class="duty-item">
+            <span class="duty-badge">2</span>
+            <div>
+              <strong>Kính trọng thầy cô &amp; đoàn kết bạn bè</strong>
+              <span>Lễ phép với cha mẹ, thầy cô, người lớn tuổi; tôn trọng sự khác biệt, giúp đỡ và đoàn kết cùng bạn bè.</span>
+            </div>
+          </li>
+          <li class="duty-item">
+            <span class="duty-badge">3</span>
+            <div>
+              <strong>Giữ gìn, bảo vệ tài sản chung</strong>
+              <span>Có ý thức bảo vệ bàn ghế, trang thiết bị lớp học, cảnh quan xanh – sạch – đẹp của nhà trường.</span>
+            </div>
+          </li>
+          <li class="duty-item">
+            <span class="duty-badge">4</span>
+            <div>
+              <strong>Chấp hành nội quy nhà trường</strong>
+              <span>Đi học đúng giờ, mặc trang phục phù hợp, giữ gìn nề nếp và văn hóa ứng xử học đường.</span>
+            </div>
+          </li>
+          <li class="duty-item">
+            <span class="duty-badge">5</span>
+            <div>
+              <strong>Tuân thủ pháp luật &amp; an toàn xã hội</strong>
+              <span>Chấp hành nghiêm luật giao thông, an ninh mạng và các quy định của pháp luật Nhà nước.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="warning-card">
+        <h2 class="warning-title">⚠️ Những hành vi học sinh KHÔNG được làm</h2>
+        <ul class="forbid-list">
+          <li><strong>🚫 Bạo lực học đường &amp; bắt nạt trên mạng:</strong> Đánh nhau, gây rối, cô lập bạn bè, quay clip phát tán hoặc bình luận công kích trên mạng xã hội.</li>
+          <li><strong>🚫 Xúc phạm nhân phẩm người khác:</strong> Nói tục, chửi thề, chế ảnh bêu rếu, tung tin đồn sai sự thật làm tổn hại danh dự thầy cô và bạn bè.</li>
+          <li><strong>🚫 Sử dụng chất gây nghiện &amp; chất kích thích:</strong> Hút thuốc lá, thuốc lá điện tử (vape/pod), uống rượu bia hoặc sử dụng các chất cấm trong và ngoài trường học.</li>
+          <li><strong>🚫 Gian lận trong học tập &amp; thi cử:</strong> Quay cóp, nhờ làm bài hộ, sử dụng tài liệu trái phép hoặc làm giả kết quả học tập.</li>
+          <li><strong>🚫 Vi phạm luật giao thông:</strong> Chạy xe quá tốc độ, không đội mũ bảo hiểm, chở quá số người quy định hoặc điều khiển xe máy trên 50cc khi chưa đủ tuổi.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         TAB 3: 🆘 BẢO VỆ BẢN THÂN
+         ======================================================================= -->
+    <section id="tabBaoVe" class="tab-panel" role="tabpanel">
+      <div class="card">
+        <h2 class="section-heading">🛡️ Quy trình 3 bước khi quyền của bạn hoặc bạn bè bị xâm phạm</h2>
+        <div class="step-card">
+          <div class="step-circle">1</div>
+          <div class="step-content">
+            <strong>Giữ an toàn &amp; lưu lại bằng chứng</strong>
+            <p>Nhanh chóng rời khỏi khu vực nguy hiểm đến nơi đông người. Nếu bị bắt nạt hoặc đe dọa trên mạng, hãy chụp ảnh màn hình tin nhắn, bài đăng (không xóa ngay) để làm bằng chứng.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-circle">2</div>
+          <div class="step-content">
+            <strong>Báo ngay cho người lớn tin cậy</strong>
+            <p>Chia sẻ sự việc với Giáo viên chủ nhiệm, Cô phụ trách Tổ Tư vấn học đường, Ban Giám hiệu hoặc bố mẹ. Tuyệt đối không im lặng chịu đựng một mình.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-circle">3</div>
+          <div class="step-content">
+            <strong>Gọi đường dây nóng khi khẩn cấp</strong>
+            <p>Trong tình huống bị đe dọa trực tiếp, bạo lực nghiêm trọng hoặc xâm hại, hãy gọi ngay Tổng đài Quốc gia 111 (miễn phí 24/7) để được bảo vệ khẩn cấp.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="section-heading">📞 Kênh hỗ trợ &amp; Kết nối ngay</h2>
+        <p class="panel-intro">Bạn không bao giờ phải đi một mình. Chọn kênh phù hợp với bạn ngay lúc này:</p>
+        <a href="tel:111" class="btn btn-emergency">
+          📞 Gọi Tổng đài Quốc gia Bảo vệ Trẻ em: 111 (Miễn phí 24/7)
+        </a>
+        <a href="index.html" class="btn btn-primary">
+          💌 Gửi thư ẩn danh / Đặt lịch tư vấn tại Trạm Sạc 4.0
+        </a>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         TAB 4: ❓ ĐỐ VUI 5 CÂU ĐÚNG/SAI
+         ======================================================================= -->
+    <section id="tabDoVui" class="tab-panel" role="tabpanel">
+      <div class="quiz-hud">
+        <span id="quizProgress">Đã trả lời: 0 / 5 câu</span>
+        <span id="quizScore">Điểm: 0 / 5</span>
+      </div>
+
+      <div id="quizContainer"></div>
+
+      <div class="quiz-summary" id="quizSummary" aria-live="polite">
+        <h3 id="summaryTitle">🎉 Hoàn thành thử thách!</h3>
+        <p id="summaryDesc"></p>
+        <button type="button" class="btn btn-white" id="replayQuizBtn">
+          🔄 Chơi lại từ đầu
+        </button>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <strong>Tổ Tư vấn học đường &amp; Công tác xã hội – Trường THPT Đakrông</strong><br />
+      Căn cứ Luật Giáo dục 2019 &amp; Thông tư 18/2025/TT-BGDĐT
+    </footer>
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. CHUYỂN ĐỔI 4 TAB GỌN GÀNG
+    // =========================================================================
+    const tabBtns = document.querySelectorAll(".tab-btn");
+    const tabPanels = document.querySelectorAll(".tab-panel");
+
+    tabBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const targetId = btn.getAttribute("data-tab");
+
+        tabBtns.forEach((b) => {
+          b.classList.remove("active");
+          b.setAttribute("aria-selected", "false");
+        });
+        tabPanels.forEach((p) => p.classList.remove("active"));
+
+        btn.classList.add("active");
+        btn.setAttribute("aria-selected", "true");
+        const targetPanel = document.getElementById(targetId);
+        if (targetPanel) {
+          targetPanel.classList.add("active");
+        }
+      });
+    });
+
+    // =========================================================================
+    // 2. ĐÓNG / MỞ ACCORDION TRONG TAB "QUYỀN CỦA EM"
+    // =========================================================================
+    const accordionItems = document.querySelectorAll(".accordion-item");
+
+    accordionItems.forEach((item) => {
+      const header = item.querySelector(".accordion-header");
+      const icon = item.querySelector(".accordion-icon");
+
+      header.addEventListener("click", () => {
+        const isOpen = item.classList.contains("open");
+
+        accordionItems.forEach((other) => {
+          other.classList.remove("open");
+          other.querySelector(".accordion-header").setAttribute("aria-expanded", "false");
+          other.querySelector(".accordion-icon").textContent = "+";
+        });
+
+        if (!isOpen) {
+          item.classList.add("open");
+          header.setAttribute("aria-expanded", "true");
+          icon.textContent = "−";
+        }
+      });
+    });
+
+    // =========================================================================
+    // 3. MINI-QUIZ 5 CÂU ĐÚNG / SAI VỀ QUYỀN & NGHĨA VỤ HỌC SINH
+    // =========================================================================
+    const QUIZ_DATA = [
+      {
+        question: "Câu 1: Khi học sinh đến Phòng Tư vấn tâm lý hoặc gửi thư ẩn danh, câu chuyện của các em được bảo mật và không tự ý tiết lộ nếu không có nguy cơ đe dọa an toàn.",
+        answer: true,
+        explanation: "ĐÚNG! Theo Thông tư 18/2025/TT-BGDĐT, bảo mật thông tin và tôn trọng sự tự nguyện của người học là nguyên tắc hàng đầu trong công tác tư vấn học đường."
+      },
+      {
+        question: "Câu 2: Quay clip bạn bị đánh rồi đăng lên mạng xã hội cho mọi người xem chỉ là hành động đưa tin bình thường, không vi phạm quy định gì.",
+        answer: false,
+        explanation: "SAI! Quay clip, phát tán cảnh bạo lực học đường lên mạng xã hội là hành vi tiếp tay cho bạo lực, xâm phạm danh dự nhân phẩm của bạn mình và bị nghiêm cấm."
+      },
+      {
+        question: "Câu 3: Học sinh hoàn toàn có quyền từ chối mọi hành vi đụng chạm cơ thể khiến bản thân cảm thấy khó chịu, kể cả từ người quen hay người yêu.",
+        answer: true,
+        explanation: "ĐÚNG! Cơ thể bạn là bất khả xâm phạm. Bạn luôn có quyền nói KHÔNG kiên quyết để bảo vệ ranh giới và sự an toàn của chính mình."
+      },
+      {
+        question: "Câu 4: Thuốc lá điện tử (vape/pod) có mùi thơm nên học sinh vẫn được phép mang vào trường và hút thử trong giờ ra chơi.",
+        answer: false,
+        explanation: "SAI! Thuốc lá điện tử chứa chất gây nghiện gây hại nghiêm trọng cho sức khỏe tuổi vị thành niên và nằm trong danh mục hành vi bị nghiêm cấm đối với học sinh."
+      },
+      {
+        question: "Câu 5: Học sinh có quyền bày tỏ ý kiến, góp ý ẩn danh với nhà trường về các vấn đề học tập, sinh hoạt để xây dựng môi trường học đường tốt hơn.",
+        answer: true,
+        explanation: "ĐÚNG! Bạn có quyền tham gia đóng góp ý kiến văn minh qua Hòm thư góp ý, Trạm Sạc Cảm Xúc 4.0 hoặc trực tiếp với thầy cô để cùng xây dựng ngôi trường an toàn, thân thiện."
+      }
+    ];
+
+    const quizContainer = document.getElementById("quizContainer");
+    const quizProgress = document.getElementById("quizProgress");
+    const quizScore = document.getElementById("quizScore");
+    const quizSummary = document.getElementById("quizSummary");
+    const summaryTitle = document.getElementById("summaryTitle");
+    const summaryDesc = document.getElementById("summaryDesc");
+    const replayQuizBtn = document.getElementById("replayQuizBtn");
+
+    let answeredCount = 0;
+    let scoreCount = 0;
+
+    function renderQuiz() {
+      answeredCount = 0;
+      scoreCount = 0;
+      quizProgress.textContent = `Đã trả lời: 0 / ${QUIZ_DATA.length} câu`;
+      quizScore.textContent = `Điểm: 0 / ${QUIZ_DATA.length}`;
+      quizSummary.classList.remove("show");
+      quizContainer.innerHTML = "";
+
+      QUIZ_DATA.forEach((item, index) => {
+        const card = document.createElement("div");
+        card.className = "quiz-item";
+
+        const qEl = document.createElement("div");
+        qEl.className = "quiz-q";
+        qEl.textContent = item.question;
+
+        const actions = document.createElement("div");
+        actions.className = "quiz-actions";
+
+        const btnTrue = document.createElement("button");
+        btnTrue.type = "button";
+        btnTrue.className = "quiz-btn";
+        btnTrue.textContent = "✅ Đúng";
+
+        const btnFalse = document.createElement("button");
+        btnFalse.type = "button";
+        btnFalse.className = "quiz-btn";
+        btnFalse.textContent = "❌ Sai";
+
+        const fb = document.createElement("div");
+        fb.className = "quiz-feedback";
+
+        function handleAnswer(userChoice, clickedBtn, otherBtn) {
+          btnTrue.disabled = true;
+          btnFalse.disabled = true;
+          otherBtn.classList.add("dimmed");
+
+          const isCorrect = userChoice === item.answer;
+          answeredCount++;
+          if (isCorrect) {
+            scoreCount++;
+            clickedBtn.classList.add("selected-correct");
+            fb.className = "quiz-feedback show ok";
+            fb.textContent = `👏 Chính xác! ${item.explanation}`;
+          } else {
+            clickedBtn.classList.add("selected-wrong");
+            fb.className = "quiz-feedback show no";
+            fb.textContent = `💡 Chưa đúng rồi! ${item.explanation}`;
+          }
+
+          quizProgress.textContent = `Đã trả lời: ${answeredCount} / ${QUIZ_DATA.length} câu`;
+          quizScore.textContent = `Điểm: ${scoreCount} / ${QUIZ_DATA.length}`;
+
+          if (answeredCount === QUIZ_DATA.length) {
+            showQuizSummary();
+          }
+        }
+
+        btnTrue.addEventListener("click", () => handleAnswer(true, btnTrue, btnFalse));
+        btnFalse.addEventListener("click", () => handleAnswer(false, btnFalse, btnTrue));
+
+        actions.appendChild(btnTrue);
+        actions.appendChild(btnFalse);
+        card.appendChild(qEl);
+        card.appendChild(actions);
+        card.appendChild(fb);
+        quizContainer.appendChild(card);
+      });
+    }
+
+    function showQuizSummary() {
+      if (scoreCount === QUIZ_DATA.length) {
+        summaryTitle.textContent = `🏆 Tuyệt đối ${scoreCount}/${QUIZ_DATA.length} điểm!`;
+        summaryDesc.textContent = "Xuất sắc! Bạn nắm rất vững quyền và nghĩa vụ của mình để tự tin bảo vệ bản thân và ứng xử văn minh.";
+      } else if (scoreCount >= 3) {
+        summaryTitle.textContent = `🌿 Bạn đạt ${scoreCount}/${QUIZ_DATA.length} điểm!`;
+        summaryDesc.textContent = "Khá tốt rồi! Bạn hãy xem lại các câu chưa đúng và chơi lại để chinh phục trọn vẹn 5/5 điểm nhé.";
+      } else {
+        summaryTitle.textContent = `🌱 Bạn đạt ${scoreCount}/${QUIZ_DATA.length} điểm!`;
+        summaryDesc.textContent = "Đừng ngại nhé, hãy lướt lại 3 tab Quyền, Nghĩa vụ và Bảo vệ bản thân rồi thử sức lại ngay!";
+      }
+      quizSummary.classList.add("show");
+      setTimeout(() => {
+        quizSummary.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }, 100);
+    }
+
+    replayQuizBtn.addEventListener("click", () => {
+      renderQuiz();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Khởi tạo mini-quiz khi tải trang
+    renderQuiz();
+  </script>
+</body>
+</html>
